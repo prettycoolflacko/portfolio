@@ -23,7 +23,7 @@ export default function Navbar() {
     };
 
     const observerOptions = {
-      rootMargin: '-80px 0px -50% 0px',
+      rootMargin: '-20% 0px -50% 0px',
       threshold: 0,
     };
 
@@ -64,7 +64,12 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#hero"
-          className="font-[var(--font-heading)] text-lg font-bold text-[var(--color-text-primary)] no-underline flex items-center gap-2"
+          onClick={handleLinkClick}
+          className={`font-[var(--font-heading)] text-lg font-bold no-underline flex items-center gap-2 transition-colors duration-200 ${
+            activeSection === 'hero'
+              ? 'text-[var(--color-accent)]'
+              : 'text-[var(--color-text-primary)]'
+          }`}
         >
           <span className="text-[var(--color-accent)]">&lt;</span>
           Elyuzar

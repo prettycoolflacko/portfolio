@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
+import { FiGithub, FiFolder } from 'react-icons/fi';
 
 const projects = [
   {
@@ -100,15 +100,6 @@ export default function Projects() {
                     className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-200 text-xl"
                   >
                     <FiGithub />
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${project.title} external link`}
-                    className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-200 text-xl"
-                  >
-                    <FiExternalLink />
                   </a>
                 </div>
               </div>

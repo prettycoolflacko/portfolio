@@ -68,7 +68,7 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                className="glass-card p-8 text-center"
+                className="glass-card p-5 text-center"
               >
                 <stat.icon className="text-[var(--color-accent)] text-xl mx-auto mb-2" />
                 <div className="text-[var(--color-text-primary)] font-[var(--font-heading)] text-lg font-bold">

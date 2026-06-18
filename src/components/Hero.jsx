@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiInstagram, FiDownload, FiArrowDown } from 'react-icons/fi';
 
@@ -9,32 +9,53 @@ const roles = ['Backend Engineer', 'Mobile Developer', 'Data Enthusiast', 'Full-
 
 function useTypingEffect(strings, typingSpeed = 80, deletingSpeed = 40, pauseDuration = 2000) {
   const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const tick = useCallback(() => {
-    const current = strings[currentIndex];
-
-    if (!isDeleting) {
-      setDisplayText(current.substring(0, displayText.length + 1));
-      if (displayText.length === current.length) {
-        setTimeout(() => setIsDeleting(true), pauseDuration);
-        return;
-      }
-    } else {
-      setDisplayText(current.substring(0, displayText.length - 1));
-      if (displayText.length === 0) {
-        setIsDeleting(false);
-        setCurrentIndex((prev) => (prev + 1) % strings.length);
-      }
-    }
-  }, [displayText, currentIndex, isDeleting, strings, pauseDuration]);
+  const state = useRef({
+    text: '',
+    index: 0,
+    isDeleting: false,
+    isPaused: false,
+  });
 
   useEffect(() => {
-    const speed = isDeleting ? deletingSpeed : typingSpeed;
-    const timer = setTimeout(tick, speed);
+    let timer;
+
+    const tick = () => {
+      const s = state.current;
+      const current = strings[s.index];
+
+      if (s.isPaused) return;
+
+      if (!s.isDeleting) {
+        s.text = current.substring(0, s.text.length + 1);
+        setDisplayText(s.text);
+
+        if (s.text.length === current.length) {
+          s.isPaused = true;
+          timer = setTimeout(() => {
+            s.isPaused = false;
+            s.isDeleting = true;
+            tick();
+          }, pauseDuration);
+          return;
+        }
+      } else {
+        s.text = current.substring(0, s.text.length - 1);
+        setDisplayText(s.text);
+
+        if (s.text.length === 0) {
+          s.isDeleting = false;
+          s.index = (s.index + 1) % strings.length;
+        }
+      }
+
+      const speed = s.isDeleting ? deletingSpeed : typingSpeed;
+      timer = setTimeout(tick, speed);
+    };
+
+    timer = setTimeout(tick, typingSpeed);
+
     return () => clearTimeout(timer);
-  }, [tick, isDeleting, typingSpeed, deletingSpeed]);
+  }, [strings, typingSpeed, deletingSpeed, pauseDuration]);
 
   return displayText;
 }
@@ -70,8 +91,28 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="section-container flex flex-col-reverse md:flex-row items-center gap-16 md:gap-24 pt-24"
+        className="section-container flex flex-col md:flex-row items-center gap-16 md:gap-24 pt-24"
       >
+        {/* Profile Image Column — appears first on mobile */}
+        <motion.div variants={itemVariants} className="flex-shrink-0 relative">
+          <div className="relative">
+            {/* Ambient glow behind image */}
+            <div
+              className="absolute inset-0 rounded-full blur-3xl opacity-40"
+              style={{ background: 'radial-gradient(circle, rgba(139, 0, 0, 0.5) 0%, transparent 70%)' }}
+            />
+            <img
+              src={profileImg}
+              alt="Elyuzar Fazlurrahman"
+              className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover shadow-xl"
+              style={{
+                border: '3px solid rgba(139, 0, 0, 0.6)',
+                boxShadow: '0 0 30px rgba(139, 0, 0, 0.35), 0 0 60px rgba(139, 0, 0, 0.15)',
+              }}
+            />
+          </div>
+        </motion.div>
+
         {/* Text Column */}
         <div className="flex-1 text-center md:text-left">
           <motion.p
@@ -143,18 +184,6 @@ export default function Hero() {
             </motion.div>
           </div>
         </div>
-
-        {/* Profile Image Column */}
-        <motion.div variants={itemVariants} className="flex-shrink-0 relative">
-          <div className="relative">
-            {/* <!-- Replace ./assets/profile.webp with your actual photo --> */}
-            <img
-              src={profileImg}
-              alt="Elyuzar Fazlurrahman"
-              className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover border-4 border-[var(--color-border)] shadow-xl"
-            />
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}

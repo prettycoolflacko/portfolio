@@ -65,11 +65,11 @@ export default function Contact() {
                   <div className="w-10 h-10 rounded-xl bg-[var(--color-accent-subtle)] border border-[rgba(0,201,255,0.12)] flex items-center justify-center text-[var(--color-accent)] shrink-0">
                     <info.icon className="text-lg" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-[var(--color-text-muted)] text-xs font-[var(--font-mono)]">
                       {info.label}
                     </p>
-                    <p className="text-[var(--color-text-primary)] text-sm font-medium group-hover:text-[var(--color-accent)] transition-colors">
+                    <p className="text-[var(--color-text-primary)] text-sm font-medium group-hover:text-[var(--color-accent)] transition-colors break-all">
                       {info.value}
                     </p>
                   </div>
@@ -114,6 +114,7 @@ export default function Contact() {
                 id="contact-name"
                 type="text"
                 name="name"
+                autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -133,6 +134,7 @@ export default function Contact() {
                 id="contact-email"
                 type="email"
                 name="email"
+                autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -151,6 +153,7 @@ export default function Contact() {
               <textarea
                 id="contact-message"
                 name="message"
+                autoComplete="off"
                 value={formData.message}
                 onChange={handleChange}
                 required

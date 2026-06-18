@@ -67,7 +67,7 @@ export default function Education() {
                       </p>
                       <span className="text-[var(--color-text-muted)]">·</span>
                       <p className="text-[var(--color-accent)] text-xs font-[var(--font-mono)] font-semibold">
-                        GPA: {edu.gpa}
+                        {/^\d/.test(edu.gpa) ? `GPA: ${edu.gpa}` : edu.gpa}
                       </p>
                     </div>
                   </div>

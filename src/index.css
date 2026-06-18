@@ -32,296 +32,301 @@
   --color-bg-tertiary: #1C2333;
   --color-accent: #00C9FF;
   --color-accent-hover: #38BDF8;
+  --color-accent-glow: rgba(0, 201, 255, 0.15);
+  --color-accent-subtle: rgba(0, 201, 255, 0.08);
   --color-text-primary: #E6EDF3;
   --color-text-secondary: #8B949E;
   --color-text-muted: #6E7681;
 }
 
 /* ───────────────────────────────────────────────────────
-   Global Reset & Base
+   Base Layer Overrides
    ─────────────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
 
-/* ───────────────────────────────────────────────────────
-   Custom Scrollbar
-   ─────────────────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
-}
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-bg-tertiary);
-  border-radius: 4px;
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-bg-tertiary);
+    border-radius: 4px;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
 
-/* ───────────────────────────────────────────────────────
-   Selection Color
-   ─────────────────────────────────────────────────────── */
-::selection {
-  background: rgba(0, 201, 255, 0.25);
-  color: #fff;
-}
+  /* Selection Color */
+  ::selection {
+    background: rgba(0, 201, 255, 0.25);
+    color: #fff;
+  }
 
-/* ───────────────────────────────────────────────────────
-   Typography
-   ─────────────────────────────────────────────────────── */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-/* ───────────────────────────────────────────────────────
-   Utility Classes
-   ─────────────────────────────────────────────────────── */
-.section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 6rem 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .section-container {
-    padding: 8rem 2rem;
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
   }
 }
 
-.section-title {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: 0.5rem;
-  position: relative;
-  display: inline-block;
-}
+/* ───────────────────────────────────────────────────────
+   Custom Component & Utility Layer
+   ─────────────────────────────────────────────────────── */
+@layer utilities {
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
 
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
-  border-radius: 2px;
-}
+  @media (min-width: 768px) {
+    .section-container {
+      padding: 8rem 2rem;
+    }
+  }
 
-.section-subtitle {
-  color: var(--color-text-secondary);
-  font-size: 1rem;
-  margin-top: 1rem;
-  max-width: 600px;
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), transparent);
+    border-radius: 2px;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    margin-top: 1rem;
+    max-width: 600px;
+  }
+
+  /* Glass Card */
+  .glass-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .glass-card:hover {
+    border-color: var(--color-border-accent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Tech Tag / Pill Badge */
+  .tech-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .tech-tag:hover {
+    border-color: var(--color-text-muted);
+  }
+
+  /* Glow Button */
+  .btn-glow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-bg-primary);
+    background: var(--color-accent);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    background: transparent;
+    border: 1.5px solid var(--color-border);
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-text-secondary);
+    background: var(--color-bg-tertiary);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient Divider */
+  .gradient-divider {
+    height: 1px;
+    background: var(--color-border);
+    border: none;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 3rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 3px solid var(--color-bg-primary);
+    transform: translateX(-5px);
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Typing Cursor */
+  .typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.1em;
+    background: var(--color-accent);
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* Navbar Active Link Indicator */
+  .nav-link {
+    position: relative;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 0.5rem 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-accent);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
 }
 
 /* ───────────────────────────────────────────────────────
-   Glass Card
+   Reduced Motion Accessibility
    ─────────────────────────────────────────────────────── */
-.glass-card {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  transition: all 0.3s ease;
-}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 
-.glass-card:hover {
-  border-color: var(--color-border-accent);
-  transform: translateY(-4px);
-}
+  html {
+    scroll-behavior: auto;
+  }
 
-/* ───────────────────────────────────────────────────────
-   Tech Tag / Pill Badge
-   ─────────────────────────────────────────────────────── */
-.tech-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35rem 0.85rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text-primary);
-  background: var(--color-bg-tertiary);
-  border: 1px solid var(--color-border);
-  border-radius: 9999px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.tech-tag:hover {
-  border-color: var(--color-text-muted);
-}
-
-/* ───────────────────────────────────────────────────────
-   Glow Button
-   ─────────────────────────────────────────────────────── */
-.btn-glow {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 2.5rem;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--color-bg-primary);
-  background: var(--color-accent);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.btn-glow:hover {
-  background: var(--color-accent-hover);
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 2.5rem;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--color-text-primary);
-  background: transparent;
-  border: 1.5px solid var(--color-border);
-  border-radius: 12px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.btn-outline:hover {
-  border-color: var(--color-text-secondary);
-  background: var(--color-bg-tertiary);
-  transform: translateY(-2px);
-}
-
-/* ───────────────────────────────────────────────────────
-   Gradient Divider
-   ─────────────────────────────────────────────────────── */
-.gradient-divider {
-  height: 1px;
-  background: var(--color-border);
-  border: none;
-}
-
-/* ───────────────────────────────────────────────────────
-   Timeline
-   ─────────────────────────────────────────────────────── */
-.timeline {
-  position: relative;
-  padding-left: 2rem;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--color-border);
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: 3rem;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -2rem;
-  top: 6px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  border: 3px solid var(--color-bg-primary);
-  transform: translateX(-5px);
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-/* ───────────────────────────────────────────────────────
-   Typing Cursor
-   ─────────────────────────────────────────────────────── */
-.typing-cursor {
-  display: inline-block;
-  width: 3px;
-  height: 1.1em;
-  background: var(--color-accent);
-  margin-left: 4px;
-  animation: blink 1s step-end infinite;
-  vertical-align: text-bottom;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-/* ───────────────────────────────────────────────────────
-   Navbar Active Link Indicator
-   ─────────────────────────────────────────────────────── */
-.nav-link {
-  position: relative;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-  padding: 0.5rem 0;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: var(--color-accent);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
+  .typing-cursor {
+    animation: none;
+    opacity: 1;
+  }
 }
