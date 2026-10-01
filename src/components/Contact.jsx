@@ -1,171 +1,141 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiGithub, FiLinkedin, FiInstagram, FiSend, FiGlobe } from 'react-icons/fi';
+import { FiSend } from 'react-icons/fi';
+import AeroSprite from './AeroSprite';
 
 const contactInfo = [
-  { icon: FiMail, label: 'Email', value: 'elyuzarf@gmail.com', href: 'mailto:elyuzarf@gmail.com' },
-  { icon: FiPhone, label: 'Phone', value: '+62 812-2794-8664', href: 'tel:+6281227948664' },
-  { icon: FiGlobe, label: 'Portfolio', value: 'portfolio.anirveda.rocks', href: 'https://portfolio.anirveda.rocks' },
+  { sprite: 'mail',    label: 'Email',     value: 'elyuzarf@gmail.com',         href: 'mailto:elyuzarf@gmail.com' },
+  { sprite: 'phone',   label: 'Phone',     value: '+62 812-2794-8664',          href: 'tel:+6281227948664' },
+  { sprite: 'web',     label: 'Portfolio', value: 'portfolio.anirveda.rocks',   href: 'https://portfolio.anirveda.rocks' },
 ];
 
-const socialLinks = [
-  { icon: FiGithub, href: 'https://github.com/prettycoolflacko', label: 'GitHub' },
-  { icon: FiLinkedin, href: 'https://www.linkedin.com/in/elyuzar-f', label: 'LinkedIn' },
-  { icon: FiInstagram, href: 'https://instagram.com/elyuzar_f', label: 'Instagram' },
+const socials = [
+  { sprite: 'github',    href: 'https://github.com/prettycoolflacko',   label: 'GitHub' },
+  { sprite: 'linkedin',  href: 'https://www.linkedin.com/in/elyuzar-f', label: 'LinkedIn' },
+  { sprite: 'instagram', href: 'https://instagram.com/elyuzar_f',       label: 'Instagram' },
 ];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name:'', email:'', message:'' });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:elyuzarf@gmail.com?subject=${subject}&body=${body}`;
+    const sub = encodeURIComponent(`Portfolio Contact from ${form.name}`);
+    const bod = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
+    window.location.href = `mailto:elyuzarf@gmail.com?subject=${sub}&body=${bod}`;
   };
 
   return (
-    <section id="contact" className="relative bg-[var(--color-bg-secondary)]">
-      <hr className="gradient-divider" />
-      <div className="section-container">
+    <section id="contact" style={{ padding:'2rem 0 5rem' }}>
+      <div>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          initial={{ opacity:0, y:15 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }} transition={{ duration:0.4 }}
+          style={{ marginBottom: '1.25rem' }}
         >
-          <h2 className="section-title mx-auto">Get In Touch</h2>
-          <p className="section-subtitle mx-auto mt-4">
-            Have a project in mind or just want to say hi? I'd love to hear from you.
-          </p>
+          <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
+            <AeroSprite id="mail" size={22} title="Get In Touch" />
+            <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
+              Get In Touch
+            </h2>
+            <span style={{ color:'#4a7190', fontSize:'0.85rem', marginLeft:'auto' }}>
+              Windows Mail / Direct Contact
+            </span>
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-16 max-w-4xl mx-auto">
-          {/* Contact Info */}
+        <div style={{ display:'grid', gap:'1.5rem', gridTemplateColumns:'1fr' }}
+             className="md:grid-cols-2" >
+          {/* Contact info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity:0, x:-20 }} whileInView={{ opacity:1, x:0 }}
+            viewport={{ once:true }} transition={{ duration:0.4 }}
+            style={{ display:'flex', flexDirection:'column', gap:'0.75rem' }}
           >
-            <div className="flex flex-col gap-6 mb-10">
-              {contactInfo.map((info) => (
-                <a
-                  key={info.label}
-                  href={info.href}
-                  className="glass-card p-6 flex items-center gap-6 no-underline group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-[var(--color-accent-subtle)] border border-[rgba(0,201,255,0.12)] flex items-center justify-center text-[var(--color-accent)] shrink-0">
-                    <info.icon className="text-lg" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[var(--color-text-muted)] text-xs font-[var(--font-mono)]">
-                      {info.label}
-                    </p>
-                    <p className="text-[var(--color-text-primary)] text-sm font-medium group-hover:text-[var(--color-accent)] transition-colors break-all">
-                      {info.value}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
+            {contactInfo.map(info => (
+              <a
+                key={info.label}
+                href={info.href}
+                className="glass-card"
+                style={{ padding:'1rem 1.25rem', display:'flex', alignItems:'center', gap:'12px', textDecoration:'none', borderRadius: 3 }}
+              >
+                <AeroSprite id={info.sprite} size={30} />
+              <div style={{ minWidth:0 }}>
+                  <p style={{ color:'#4a7190', fontSize:'0.7rem', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.06em', margin:0 }}>
+                    {info.label}
+                  </p>
+                  <p style={{ color:'#0d3a5c', fontWeight:700, fontSize:'0.88rem', margin:'1px 0 0', wordBreak:'break-all' }}>
+                    {info.value}
+                  </p>
+                </div>
+              </a>
+            ))}
 
-            {/* Social Links */}
-            <div className="flex gap-6">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="w-11 h-11 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-glass)] flex items-center justify-center text-[var(--color-text-secondary)] text-lg transition-all duration-300 hover:border-[var(--color-border-accent)] hover:text-[var(--color-accent)] hover:shadow-[0_0_15px_var(--color-accent-glow)] hover:-translate-y-1"
-                >
-                  <social.icon />
+            {/* Social links (Glossy sprites) */}
+            <div style={{ display:'flex', gap:'10px', marginTop:'0.5rem' }}>
+              {socials.map(s => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                  aria-label={s.label} style={{ display:'inline-block' }}>
+                  <AeroSprite id={s.sprite} size={40} title={s.label} />
                 </a>
               ))}
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Contact form (Square Windows 7 Dialog Style) */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="glass-card p-10 flex flex-col gap-8"
+            className="glass-panel"
+            style={{ padding:'1.5rem', display:'flex', flexDirection:'column', gap:'1rem', borderRadius: 3 }}
+            initial={{ opacity:0, x:20 }} whileInView={{ opacity:1, x:0 }}
+            viewport={{ once:true }} transition={{ duration:0.4 }}
           >
-            <div className="flex flex-col gap-3">
-              <label
-                htmlFor="contact-name"
-                className="block text-[var(--color-text-secondary)] text-xs font-[var(--font-mono)] uppercase tracking-wider"
-              >
-                Name
+            {/* Name */}
+            <div style={{ display:'flex', flexDirection:'column', gap:'3px' }}>
+              <label htmlFor="c-name" style={{ fontSize:'0.75rem', fontWeight:700, color:'#1e395b' }}>
+                Sender Name:
               </label>
               <input
-                id="contact-name"
-                type="text"
-                name="name"
-                autoComplete="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Your name"
-                className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border)] rounded-xl px-5 py-4 text-sm text-[var(--color-text-primary)] font-[var(--font-body)] placeholder:text-[var(--color-text-muted)] outline-none transition-all duration-300 focus:border-[var(--color-accent)] focus:shadow-[0_0_10px_var(--color-accent-glow)]"
+                id="c-name" type="text" name="name"
+                autoComplete="name" value={form.name} onChange={handleChange} required
+                placeholder="Enter your name"
+                className="aero-input"
               />
             </div>
 
-            <div className="flex flex-col gap-3">
-              <label
-                htmlFor="contact-email"
-                className="block text-[var(--color-text-secondary)] text-xs font-[var(--font-mono)] uppercase tracking-wider"
-              >
-                Email
+            {/* Email */}
+            <div style={{ display:'flex', flexDirection:'column', gap:'3px' }}>
+              <label htmlFor="c-email" style={{ fontSize:'0.75rem', fontWeight:700, color:'#1e395b' }}>
+                Sender Email:
               </label>
               <input
-                id="contact-email"
-                type="email"
-                name="email"
-                autoComplete="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="your@email.com"
-                className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border)] rounded-xl px-5 py-4 text-sm text-[var(--color-text-primary)] font-[var(--font-body)] placeholder:text-[var(--color-text-muted)] outline-none transition-all duration-300 focus:border-[var(--color-accent)] focus:shadow-[0_0_10px_var(--color-accent-glow)]"
+                id="c-email" type="email" name="email"
+                autoComplete="email" value={form.email} onChange={handleChange} required
+                placeholder="your.email@domain.com"
+                className="aero-input"
               />
             </div>
 
-            <div className="flex flex-col gap-3">
-              <label
-                htmlFor="contact-message"
-                className="block text-[var(--color-text-secondary)] text-xs font-[var(--font-mono)] uppercase tracking-wider"
-              >
-                Message
+            {/* Message */}
+            <div style={{ display:'flex', flexDirection:'column', gap:'3px' }}>
+              <label htmlFor="c-message" style={{ fontSize:'0.75rem', fontWeight:700, color:'#1e395b' }}>
+                Message Body:
               </label>
               <textarea
-                id="contact-message"
-                name="message"
-                autoComplete="off"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={4}
-                placeholder="Your message..."
-                className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border)] rounded-xl px-5 py-4 text-sm text-[var(--color-text-primary)] font-[var(--font-body)] placeholder:text-[var(--color-text-muted)] outline-none transition-all duration-300 focus:border-[var(--color-accent)] focus:shadow-[0_0_10px_var(--color-accent-glow)] resize-none leading-relaxed"
+                id="c-message" name="message"
+                autoComplete="off" value={form.message} onChange={handleChange} required
+                rows={4} placeholder="Type your message here..."
+                className="aero-input"
+                style={{ resize:'vertical', lineHeight:1.5 }}
               />
             </div>
 
-            <button type="submit" className="btn-glow justify-center mt-4">
-              <FiSend className="text-lg" />
-              Send Message
+            <button type="submit" className="aero-btn aero-btn-sky" style={{ width:'100%', fontSize:'13px', padding:'8px 14px' }}>
+              <FiSend style={{ position:'relative', zIndex:1 }} />
+              <span style={{ position:'relative', zIndex:1 }}>Send Message</span>
             </button>
           </motion.form>
         </div>

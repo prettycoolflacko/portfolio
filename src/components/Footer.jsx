@@ -1,47 +1,43 @@
-import { FiGithub, FiLinkedin, FiInstagram, FiHeart } from 'react-icons/fi';
+import AeroSprite from './AeroSprite';
 
-const socialLinks = [
-  { icon: FiGithub, href: 'https://github.com/prettycoolflacko', label: 'GitHub' },
-  { icon: FiLinkedin, href: 'https://www.linkedin.com/in/elyuzar-f', label: 'LinkedIn' },
-  { icon: FiInstagram, href: 'https://instagram.com/elyuzar_f', label: 'Instagram' },
+const socials = [
+  { sprite: 'github',    href: 'https://github.com/prettycoolflacko',   label: 'GitHub' },
+  { sprite: 'linkedin',  href: 'https://www.linkedin.com/in/elyuzar-f', label: 'LinkedIn' },
+  { sprite: 'instagram', href: 'https://instagram.com/elyuzar_f',       label: 'Instagram' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg-primary)]">
-      <div className="max-w-[1200px] mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-1 text-[var(--color-text-muted)] text-sm">
-          <span>Built with</span>
-          <FiHeart className="text-[var(--color-accent)] mx-1" />
-          <span>by</span>
-          <a
-            href="https://github.com/prettycoolflacko"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors no-underline ml-1"
-          >
-            Elyuzar Fazlurrahman
+    <footer className="win7-statusbar" style={{ marginTop:'auto', padding:'8px 16px' }}>
+      {/* Left: credit */}
+      <div style={{ display:'flex', alignItems:'center', gap:'6px', color:'#1a4e70', fontSize:'12px' }}>
+        <span>Windows 7 Aero Edition</span>
+        <span>·</span>
+        <span>Built by</span>
+        <a href="https://github.com/prettycoolflacko" target="_blank" rel="noopener noreferrer"
+          style={{ color:'#0288d1', textDecoration:'none', fontWeight:700 }}
+          onMouseOver={e => e.currentTarget.style.textDecoration='underline'}
+          onMouseOut={e => e.currentTarget.style.textDecoration='none'}
+        >
+          Elyuzar Fazlurrahman
+        </a>
+      </div>
+
+      {/* Centre: social icons */}
+      <div style={{ display:'flex', gap:'6px' }}>
+        {socials.map(s => (
+          <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+            aria-label={s.label} style={{ display:'inline-block' }}>
+            <AeroSprite id={s.sprite} size={20} title={s.label} />
           </a>
-        </div>
+        ))}
+      </div>
 
-        <div className="flex items-center gap-4">
-          {socialLinks.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              className="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors text-lg"
-            >
-              <social.icon />
-            </a>
-          ))}
-        </div>
-
-        <p className="text-[var(--color-text-muted)] text-xs font-[var(--font-mono)]">
-          © {new Date().getFullYear()} All rights reserved.
-        </p>
+      {/* Right: status indicator */}
+      <div style={{ display:'flex', alignItems:'center', gap:'8px', color:'#4a7190', fontSize:'11px' }}>
+        <span>● Local Intranet | 100%</span>
+        <span>·</span>
+        <span>© {new Date().getFullYear()}</span>
       </div>
     </footer>
   );

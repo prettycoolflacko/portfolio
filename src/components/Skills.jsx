@@ -1,86 +1,86 @@
 import { motion } from 'framer-motion';
-import { FiCode, FiLayers, FiTool, FiFilm } from 'react-icons/fi';
+import AeroSprite from './AeroSprite';
 
 const skillGroups = [
   {
-    icon: FiCode,
-    title: 'Programming',
+    sprite: 'code',
+    title: 'Programming Languages',
     skills: ['Python', 'JavaScript', 'PHP', 'C++', 'Java', 'SQL'],
   },
   {
-    icon: FiLayers,
-    title: 'Frameworks',
+    sprite: 'layers',
+    title: 'Frameworks & Libraries',
     skills: ['FastAPI', 'React Native', 'Express.js', 'Flutter', 'TailwindCSS'],
   },
   {
-    icon: FiTool,
-    title: 'Tools & Infra',
+    sprite: 'tool',
+    title: 'Tools & Infrastructure',
     skills: ['Git/GitHub', 'Linux', 'VPS', 'REST APIs', 'Redis', 'MQTT', 'IoT Hardware'],
   },
   {
-    icon: FiFilm,
-    title: 'Creative',
+    sprite: 'film',
+    title: 'Creative & Multimedia',
     skills: ['Adobe Premiere Pro', 'Photoshop', 'Videography', 'Graphic Design'],
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
-};
+const orbCycle = ['skill-orb-sky', 'skill-orb-aqua', 'skill-orb-green', 'skill-orb-silver'];
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative">
-      <hr className="gradient-divider" />
-      <div className="section-container">
+    <section id="skills" style={{ padding:'2rem 0 3rem' }}>
+      <div>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity:0, y:15 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }} transition={{ duration:0.4 }}
+          style={{ marginBottom: '1.25rem' }}
         >
-          <h2 className="section-title">Skills</h2>
-          <p className="section-subtitle">Technologies & tools I work with</p>
+          <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
+            <AeroSprite id="bolt" size={22} title="Technical Skills" />
+            <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
+              Technical Skills
+            </h2>
+            <span style={{ color:'#4a7190', fontSize:'0.85rem', marginLeft:'auto' }}>
+              Installed Libraries & Frameworks
+            </span>
+          </div>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="mt-12 grid sm:grid-cols-2 gap-10"
-        >
-          {skillGroups.map((group) => (
+        {/* Skill Groups (Square Cards) */}
+        <div style={{ display:'grid', gap:'1.25rem', gridTemplateColumns:'repeat(auto-fit, minmax(260px, 1fr))' }}>
+          {skillGroups.map((group, gi) => (
             <motion.div
               key={group.title}
-              variants={cardVariants}
-              className="glass-card p-8"
+              initial={{ opacity:0, y:15 }}
+              whileInView={{ opacity:1, y:0 }}
+              viewport={{ once:true }}
+              transition={{ duration:0.35, delay: gi * 0.08 }}
+              className="glass-card"
+              style={{ padding:'1.35rem', borderRadius: 3 }}
             >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-[var(--color-accent-subtle)] border border-[rgba(0,201,255,0.12)] flex items-center justify-center text-[var(--color-accent)]">
-                  <group.icon className="text-lg" />
-                </div>
-                <h3 className="font-[var(--font-heading)] text-base font-semibold text-[var(--color-text-primary)]">
+              {/* Group header */}
+              <div style={{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'1rem' }}>
+                <AeroSprite id={group.sprite} size={34} />
+                <h3 style={{ fontWeight:700, fontSize:'0.95rem', color:'#0d3a5c', margin:0 }}>
                   {group.title}
                 </h3>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <span key={skill} className="tech-tag">
+              {/* Square Skill Badges */}
+              <div style={{ display:'flex', flexWrap:'wrap', gap:'6px' }}>
+                {group.skills.map((skill, si) => (
+                  <span
+                    key={skill}
+                    className={`skill-orb ${orbCycle[(gi + si) % orbCycle.length]}`}
+                  >
                     {skill}
                   </span>
                 ))}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

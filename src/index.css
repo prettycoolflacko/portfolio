@@ -1,332 +1,879 @@
 @import "tailwindcss";
 
-/* ───────────────────────────────────────────────────────
-   Design Tokens & Custom Properties
-   ─────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   WINDOWS 7 AERO & FRUTIGER AERO DESIGN SYSTEM
+   Authentic Aero Glass · Segoe UI · Square Edges · Aqua Sheen
+═══════════════════════════════════════════════════════ */
 :root {
-  --color-bg-primary: #0D1117;
-  --color-bg-secondary: #161B22;
-  --color-bg-tertiary: #1C2333;
-  --color-bg-card: rgba(22, 27, 34, 0.7);
-  --color-bg-glass: rgba(22, 27, 34, 0.5);
-  --color-accent: #00C9FF;
-  --color-accent-hover: #38BDF8;
-  --color-accent-glow: rgba(0, 201, 255, 0.15);
-  --color-accent-subtle: rgba(0, 201, 255, 0.08);
-  --color-text-primary: #E6EDF3;
-  --color-text-secondary: #8B949E;
-  --color-text-muted: #6E7681;
-  --color-border: rgba(139, 148, 158, 0.15);
-  --color-border-accent: rgba(0, 201, 255, 0.3);
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* Palette */
+  --aero-sky:        #4fc3f7;
+  --aero-sky-deep:   #0288d1;
+  --aero-aqua:       #26c6da;
+  --aero-aqua-deep:  #00838f;
+  --aero-green:      #66bb6a;
+  --aero-green-deep: #2e7d32;
+  --aero-white:      #ffffff;
+  --aero-silver:     #cfd8dc;
+  --aero-chrome:     #b0bec5;
+
+  /* Windows 7 Aero Glass surfaces */
+  --win7-glass-bg:    linear-gradient(180deg, rgba(235, 245, 255, 0.50) 0%, rgba(195, 225, 245, 0.28) 40%, rgba(175, 215, 240, 0.22) 70%, rgba(210, 235, 250, 0.40) 100%);
+  --win7-glass-border: rgba(255, 255, 255, 0.75);
+  --win7-glass-border-dark: rgba(20, 60, 100, 0.35);
+  --win7-glass-shadow: 0 16px 45px rgba(0, 30, 65, 0.42), 0 2px 10px rgba(0, 0, 0, 0.20);
+  --win7-glass-blur:   blur(16px);
+
+  /* Content area */
+  --content-bg:      rgba(255, 255, 255, 0.94);
+  --content-border:  #8eaecf;
+  --content-inset:   inset 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  /* Text colors */
+  --text-primary:    #112538;
+  --text-secondary:  #1b4e72;
+  --text-muted:      #4a7190;
+  --text-light:      #ffffff;
+
+  /* Fonts - Windows 7 Segoe UI */
+  --font-display: 'Segoe UI', Tahoma, Geneva, Verdana, system-ui, sans-serif;
+  --font-body:    'Segoe UI', Tahoma, Geneva, Verdana, system-ui, sans-serif;
+
+  /* Radius: STRICTLY SQUARE / 2-3px subtle bevel as requested */
+  --r-sm:   2px;
+  --r-md:   3px;
+  --r-lg:   3px;
+  --r-xl:   4px;
+  --r-pill: 3px; /* square buttons instead of round pills */
+
+  /* Glass reflection sheen */
+  --gloss-top: linear-gradient(180deg,
+    rgba(255,255,255,0.70) 0%,
+    rgba(255,255,255,0.22) 48%,
+    rgba(255,255,255,0.00) 49%,
+    rgba(255,255,255,0.08) 100%
+  );
 }
 
-/* ───────────────────────────────────────────────────────
-   Tailwind v4 Theme Extensions
-   ─────────────────────────────────────────────────────── */
-@theme {
-  --color-bg-primary: #0D1117;
-  --color-bg-secondary: #161B22;
-  --color-bg-tertiary: #1C2333;
-  --color-accent: #00C9FF;
-  --color-accent-hover: #38BDF8;
-  --color-accent-glow: rgba(0, 201, 255, 0.15);
-  --color-accent-subtle: rgba(0, 201, 255, 0.08);
-  --color-text-primary: #E6EDF3;
-  --color-text-secondary: #8B949E;
-  --color-text-muted: #6E7681;
-}
-
-/* ───────────────────────────────────────────────────────
-   Base Layer Overrides
-   ─────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   Base & Reset
+═══════════════════════════════════════════════════════ */
 @layer base {
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
+  *, *::before, *::after { box-sizing: border-box; }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 20px;
+    height: 100%;
   }
 
   body {
     font-family: var(--font-body);
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-    line-height: 1.7;
+    color: var(--text-primary);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Wallpaper: authentic Windows 7 Aurora Wallpaper */
+    background-image: url('/aero-wallpaper.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #0b506b;
   }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--color-bg-primary);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--color-bg-tertiary);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-text-muted);
-  }
-
-  /* Selection Color */
-  ::selection {
-    background: rgba(0, 201, 255, 0.25);
-    color: #fff;
-  }
-
-  /* Typography */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.25;
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background: #3399ff;
+    color: #ffffff;
+  }
+
+  /* ── Frutiger Aero nature layer (floating water / life elements) ── */
+  .aero-nature-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .aero-drift {
+    position: absolute;
+    opacity: 0.85;
+    animation: aero-bob 6s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 40, 80, 0.35));
+  }
+  @keyframes aero-bob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-14px) rotate(3deg); }
+  }
+
+  /* ── Windows 7 Aero Scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-left: 1px solid #d9d9d9;
+    box-shadow: inset 1px 0 2px rgba(0,0,0,0.05);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d8e5f2 0%, #c0d3e8 49%, #a9c4e2 50%, #c1d8ee 100%);
+    border: 1px solid #7c99be;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #cde3fa 0%, #aed3f7 49%, #8ec0f2 50%, #b2daf8 100%);
+    border-color: #3c7fb1;
+    box-shadow: 0 0 6px rgba(60, 160, 240, 0.6), inset 0 1px 0 rgba(255,255,255,0.9);
   }
 }
 
-/* ───────────────────────────────────────────────────────
-   Custom Component & Utility Layer
-   ─────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   Windows 7 Aero Window Chrome & Components
+═══════════════════════════════════════════════════════ */
 @layer utilities {
-  .section-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 1.5rem;
-  }
 
-  @media (min-width: 768px) {
-    .section-container {
-      padding: 8rem 2rem;
-    }
-  }
-
-  .section-title {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
+  /* ── Desktop Container ── */
+  .win7-desktop {
     position: relative;
-    display: inline-block;
+    min-height: 100vh;
+    padding-bottom: 48px; /* space for taskbar */
+    display: flex;
+    flex-direction: column;
   }
 
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-accent), transparent);
-    border-radius: 2px;
-  }
-
-  .section-subtitle {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-    margin-top: 1rem;
-    max-width: 600px;
-  }
-
-  /* Glass Card */
-  .glass-card {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    transition: all 0.3s ease;
-  }
-
-  .glass-card:hover {
-    border-color: var(--color-border-accent);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  }
-
-  /* Tech Tag / Pill Badge */
-  .tech-tag {
-    display: inline-flex;
+  /* ── Desktop Icons ── */
+  .win7-desktop-icon {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0.35rem 0.85rem;
-    font-family: var(--font-body);
-    font-size: 0.75rem;
+    justify-content: center;
+    width: 80px;
+    padding: 6px 4px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .win7-desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.20);
+    border-color: rgba(255, 255, 255, 0.50);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+  }
+  .win7-desktop-icon.active {
+    background: rgba(180, 220, 255, 0.35);
+    border-color: rgba(120, 180, 255, 0.70);
+  }
+  .win7-desktop-icon-label {
+    margin-top: 4px;
+    font-size: 11px;
     font-weight: 500;
-    color: var(--color-text-primary);
-    background: var(--color-bg-tertiary);
-    border: 1px solid var(--color-border);
-    border-radius: 9999px;
-    transition: all 0.2s ease;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px #000000, 0 0 4px #000000;
+    word-break: break-word;
+  }
+
+  /* ── Main Windows 7 Window Frame ── */
+  .win7-window {
+    position: relative;
+    background: var(--win7-glass-bg);
+    backdrop-filter: var(--win7-glass-blur);
+    -webkit-backdrop-filter: var(--win7-glass-blur);
+    border: 1px solid var(--win7-glass-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.90);
+    border-bottom: 1px solid var(--win7-glass-border-dark);
+    border-radius: 6px 6px 3px 3px;
+    box-shadow: var(--win7-glass-shadow), inset 0 1px 0 rgba(255,255,255,0.85);
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Aero glass diagonal reflection light streak */
+  .win7-window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 38px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.65) 0%,
+      rgba(255,255,255,0.25) 45%,
+      rgba(255,255,255,0.02) 48%,
+      rgba(255,255,255,0.12) 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* ── Window Titlebar ── */
+  .win7-titlebar {
+    position: relative;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 10px;
+    user-select: none;
+    z-index: 20;
+  }
+
+  .win7-title-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-shadow: 0 0 10px #ffffff, 0 0 5px #ffffff, 0 1px 2px rgba(0,0,0,0.8);
+  }
+
+  /* ── Window Control Buttons (Min, Max, Close) ── */
+  .win7-controls {
+    display: flex;
+    align-items: stretch;
+    height: 22px;
+    gap: 1px;
+    margin-right: -2px;
+  }
+
+  .win7-btn-ctrl {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(200,225,245,0.20) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    border-radius: 2px;
+    color: #1a4266;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.60);
+    transition: all 0.15s ease;
+  }
+  .win7-btn-ctrl:hover {
+    background: linear-gradient(180deg, #e3f2fd 0%, #bbdefb 49%, #90caf9 50%, #b3e5fc 100%);
+    border-color: #3c7fb1;
+    color: #0d47a1;
+    box-shadow: 0 0 6px rgba(60, 160, 240, 0.7), inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+
+  /* Close button: distinctive Windows 7 red gradient */
+  .win7-btn-close {
+    width: 46px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(240,210,210,0.20) 100%);
+  }
+  .win7-btn-close:hover {
+    background: linear-gradient(180deg, #f87b6d 0%, #e04332 49%, #c42918 50%, #e54b38 100%);
+    border-color: #8b180d;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(220, 50, 30, 0.75), inset 0 1px 0 rgba(255,255,255,0.5);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  }
+
+  /* ── Menu Bar (File, Edit, View...) ── */
+  .win7-menubar {
+    position: relative;
+    background: linear-gradient(180deg, #fbfcfe 0%, #eff3f8 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.90);
+    border-bottom: 1px solid #d0dbe5;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 12px;
+    user-select: none;
+    z-index: 15;
+  }
+
+  .win7-menu-item {
+    padding: 3px 8px;
+    color: #1e395b;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .win7-menu-item:hover, .win7-menu-item.active {
+    background: linear-gradient(180deg, #f3f8fe 0%, #e1eefa 100%);
+    border-color: #b8d6fb;
+    box-shadow: inset 0 1px 0 #ffffff;
+    color: #0c3b6d;
+  }
+
+  /* ── Explorer Toolbar / Address Bar ── */
+  .win7-toolbar {
+    background: linear-gradient(180deg, #f7f9fc 0%, #ebf1f7 100%);
+    border-bottom: 1px solid #b8c9d9;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 14;
+  }
+
+  /* Back/Forward buttons */
+  .win7-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #ebf7ff 0%, #bde1fa 50%, #90caf9 100%);
+    border: 1px solid #4a92c9;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.9);
+    color: #0d47a1;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .win7-nav-btn:hover {
+    box-shadow: 0 0 6px rgba(38, 198, 218, 0.7), inset 0 1px 0 rgba(255,255,255,1);
+    transform: scale(1.04);
+  }
+
+  /* Breadcrumb address bar */
+  .win7-address-bar {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #9bb7d4;
+    border-radius: 2px;
+    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #1e395b;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .win7-address-segment {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    cursor: pointer;
+    color: #1a4266;
+  }
+  .win7-address-segment:hover {
+    background: #e3f2fd;
+  }
+
+  /* ── Header Banner (Exact replica of user's screenshot) ── */
+  .win7-header-banner {
+    background: linear-gradient(180deg, #186cb4 0%, #1f82d2 45%, #0d5aa0 50%, #1168b5 100%);
+    border-top: 1px solid #3c8ed4;
+    border-bottom: 1px solid #0a3d6d;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
+  }
+  .win7-header-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.02) 100%);
+    pointer-events: none;
+  }
+
+  .win7-banner-title {
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 255, 255, 0.3);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* ── Info Sub-Bar (Exact replica from user's screenshot) ── */
+  .win7-infobar {
+    background: linear-gradient(180deg, #ffffff 0%, #eef5fb 100%);
+    border-bottom: 1px solid #9bb7d4;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .win7-info-sphere {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #64b5f6 0%, #1e88e5 60%, #1565c0 100%);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 6px rgba(21, 101, 192, 0.45), inset 0 1px 0 rgba(255,255,255,0.7);
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 17px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  /* ── Main Content Area (Crisp White Inset Pane with Square Edges) ── */
+  .win7-content-body {
+    background: var(--content-bg);
+    padding: 24px;
+    border: 1px solid #94b2d1;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    overflow-y: auto;
+    max-height: calc(100vh - 190px);
+  }
+
+  /* ── Classic Windows 7 Group Box (Fieldset / Legend) ── */
+  .win7-groupbox {
+    border: 1px solid #b2c9de;
+    border-radius: var(--r-md);
+    background: rgba(255, 255, 255, 0.82);
+    padding: 18px 20px 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 40, 80, 0.05);
+  }
+  .win7-groupbox-legend {
+    color: #0c3b6d;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 0 8px;
+    margin-left: 8px;
+    text-shadow: 0 1px 0 #ffffff;
+  }
+
+  /* ── Windows 7 Aero Push Button (Square, 3px radius) ── */
+  .aero-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 18px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: var(--r-md);
+    border: 1px solid #707070;
+    background: linear-gradient(180deg, #f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+    color: #1e395b;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: inset 0 1px 0 #ffffff, inset 0 0 1px rgba(255,255,255,0.8);
+    transition: all 0.15s ease;
     white-space: nowrap;
+    user-select: none;
+  }
+  .aero-btn:hover {
+    background: linear-gradient(180deg, #ebf7ff 0%, #cbe8fb 48%, #a0d4f7 50%, #bde1fa 100%);
+    border-color: #3c7fb1;
+    color: #0c3b6d;
+    box-shadow: 0 0 8px rgba(60, 160, 240, 0.65), inset 0 1px 0 #ffffff, inset 0 0 2px rgba(255,255,255,0.8);
+  }
+  .aero-btn:active {
+    background: linear-gradient(180deg, #a0d4f7 0%, #76bded 48%, #4ba2e3 50%, #85caf9 100%);
+    border-color: #2b6a94;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
   }
 
-  .tech-tag:hover {
-    border-color: var(--color-text-muted);
+  /* Blue primary variant */
+  .aero-btn-sky {
+    background: linear-gradient(180deg, #ebf7ff 0%, #bce1fa 48%, #85c8f7 50%, #aadafa 100%);
+    border: 1px solid #3c7fb1;
+    color: #0b3863;
+    font-weight: 700;
+  }
+  .aero-btn-sky:hover {
+    background: linear-gradient(180deg, #f0f9ff 0%, #a4d7f8 48%, #5eb4f4 50%, #8ecbf9 100%);
+    border-color: #266b9d;
+    box-shadow: 0 0 10px rgba(40, 150, 235, 0.75), inset 0 1px 0 #ffffff;
   }
 
-  /* Glow Button */
-  .btn-glow {
+  /* Green variant */
+  .aero-btn-green {
+    background: linear-gradient(180deg, #f0f9f0 0%, #c4eec5 48%, #8bdc8c 50%, #b1e9b2 100%);
+    border: 1px solid #439645;
+    color: #1b4b1c;
+  }
+  .aero-btn-green:hover {
+    background: linear-gradient(180deg, #e4f7e5 0%, #aae7ac 48%, #69cf6c 50%, #99e29b 100%);
+    border-color: #2e7d32;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.65), inset 0 1px 0 #ffffff;
+  }
+
+  /* ── Square Glass Cards ── */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid #a4bed8;
+    border-radius: var(--r-md);
+    box-shadow: 0 2px 6px rgba(0, 30, 70, 0.08), inset 0 1px 0 #ffffff;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    overflow: hidden;
+  }
+  .glass-card:hover {
+    border-color: #4a92c9;
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.45), 0 4px 12px rgba(0, 40, 90, 0.12);
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #94b2d1;
+    border-radius: var(--r-md);
+    box-shadow: 0 2px 8px rgba(0, 30, 60, 0.08), inset 0 1px 0 #ffffff;
+  }
+
+  /* ── Square Skill & Category Badges (No round pills) ── */
+  .skill-orb {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2.5rem;
-    font-family: var(--font-body);
+    gap: 5px;
+    padding: 4px 10px;
+    font-size: 12px;
     font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--color-bg-primary);
-    background: var(--color-accent);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    font-family: var(--font-body);
+    border-radius: var(--r-sm);
+    border: 1px solid #9bb7d4;
+    cursor: default;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .skill-orb:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 80, 160, 0.25);
   }
 
-  .btn-glow:hover {
-    background: var(--color-accent-hover);
-    transform: translateY(-2px);
+  .skill-orb-sky {
+    background: linear-gradient(180deg, #f2f9ff 0%, #d4ebfd 50%, #b8defb 100%);
+    border-color: #68a5d8;
+    color: #0c3b6d;
+    box-shadow: inset 0 1px 0 #ffffff;
+  }
+  .skill-orb-aqua {
+    background: linear-gradient(180deg, #f0fdfd 0%, #cef5f7 50%, #aaebee 100%);
+    border-color: #3bb2bf;
+    color: #004d55;
+    box-shadow: inset 0 1px 0 #ffffff;
+  }
+  .skill-orb-green {
+    background: linear-gradient(180deg, #f2fbf3 0%, #d5f4d7 50%, #b2e8b5 100%);
+    border-color: #5ba85f;
+    color: #174d1a;
+    box-shadow: inset 0 1px 0 #ffffff;
+  }
+  .skill-orb-silver {
+    background: linear-gradient(180deg, #ffffff 0%, #e8edf1 50%, #d4dce2 100%);
+    border-color: #9aa8b2;
+    color: #2c3e50;
+    box-shadow: inset 0 1px 0 #ffffff;
   }
 
-  .btn-outline {
+  /* ── Square Icon Tiles ── */
+  .aero-icon-circle {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2.5rem;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--color-text-primary);
-    background: transparent;
-    border: 1.5px solid var(--color-border);
-    border-radius: 12px;
-    cursor: pointer;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--r-sm);
+    border: 1px solid #7ea8cf;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.12);
+  }
+  .aero-icon-sky {
+    background: linear-gradient(180deg, #ebf7ff 0%, #90caf9 60%, #42a5f5 100%);
+    color: #0b3863;
+  }
+  .aero-icon-aqua {
+    background: linear-gradient(180deg, #e0f7fa 0%, #80deea 60%, #26c6da 100%);
+    color: #004d55;
+  }
+  .aero-icon-green {
+    background: linear-gradient(180deg, #e8f5e9 0%, #a5d6a7 60%, #66bb6a 100%);
+    color: #1b4b1c;
+  }
+
+  /* ── Square Social Buttons ── */
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 30px;
+    border-radius: var(--r-sm);
+    border: 1px solid #8eaecf;
+    background: linear-gradient(180deg, #ffffff 0%, #eaf1f7 50%, #d8e5f2 100%);
+    color: #1b4e72;
     text-decoration: none;
-    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0,0,0,0.08);
+    transition: all 0.15s ease;
+  }
+  .social-btn:hover {
+    background: linear-gradient(180deg, #f2f9ff 0%, #cbe5fb 50%, #9bcbf7 100%);
+    border-color: #3c7fb1;
+    color: #0c3b6d;
+    box-shadow: 0 0 6px rgba(60, 160, 240, 0.6), inset 0 1px 0 #ffffff;
   }
 
-  .btn-outline:hover {
-    border-color: var(--color-text-secondary);
-    background: var(--color-bg-tertiary);
-    transform: translateY(-2px);
+  /* ── Square Windows 7 Input Fields ── */
+  .aero-input {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #7f9db9;
+    border-radius: var(--r-sm);
+    padding: 7px 10px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #112538;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .aero-input:focus {
+    border-color: #3d80df;
+    box-shadow: 0 0 5px rgba(61, 128, 223, 0.6), inset 0 1px 2px rgba(0, 0, 0, 0.08);
   }
 
-  /* Gradient Divider */
-  .gradient-divider {
-    height: 1px;
-    background: var(--color-border);
-    border: none;
+  /* ── Image placeholder ── */
+  .img-placeholder {
+    background: linear-gradient(135deg, #e3f2fd 0%, #e0f7fa 100%);
+    border: 1px solid #94b8db;
+    border-radius: var(--r-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #0d47a1;
+    font-weight: 600;
+    font-size: 12px;
   }
 
-  /* Timeline */
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
+  /* ── Windows 7 User Picture Frame (Hero Avatar) ── */
+  .win7-avatar-frame {
+    display: inline-block;
+    padding: 4px;
+    background: linear-gradient(180deg, #ffffff 0%, #e0eaf3 100%);
+    border: 1px solid #7c9fbe;
+    border-radius: var(--r-md);
+    box-shadow: 0 3px 10px rgba(0, 40, 90, 0.25), inset 0 1px 0 #ffffff;
+  }
+  .win7-avatar-inner {
+    border: 1px solid #9ebdd8;
+    border-radius: var(--r-sm);
+    overflow: hidden;
   }
 
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
+  /* ── Windows 7 Status Bar ── */
+  .win7-statusbar {
+    background: linear-gradient(180deg, #f2f5f9 0%, #e2e8f0 100%);
+    border-top: 1px solid #b8c9d9;
+    padding: 4px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #4a7190;
+    user-select: none;
+  }
+
+  /* ── Windows 7 Aero Taskbar (Superbar) ── */
+  .win7-taskbar {
+    position: fixed;
     bottom: 0;
-    width: 2px;
-    background: var(--color-border);
+    left: 0;
+    right: 0;
+    height: 42px;
+    background: linear-gradient(180deg,
+      rgba(35, 60, 85, 0.75) 0%,
+      rgba(15, 35, 55, 0.85) 50%,
+      rgba(8, 20, 35, 0.92) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px 0 6px;
+    z-index: 9999;
+    user-select: none;
   }
 
-  .timeline-item {
-    position: relative;
-    padding-bottom: 3rem;
+  /* Windows 7 Start Orb */
+  .win7-start-orb {
+    width: 44px;
+    height: 44px;
+    margin-top: -6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 45% 35%, #76d3ff 0%, #1980d4 40%, #034b8c 80%, #012954 100%);
+    border: 2px solid rgba(255, 255, 255, 0.70);
+    box-shadow: 0 0 12px rgba(38, 198, 218, 0.60), inset 0 2px 4px rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    flex-shrink: 0;
+  }
+  .win7-start-orb:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 18px rgba(79, 195, 247, 0.90), inset 0 2px 4px #ffffff;
   }
 
-  .timeline-item::before {
+  /* Taskbar Window Tab */
+  .win7-task-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  }
+  .win7-task-tab:hover, .win7-task-tab.active {
+    background: linear-gradient(180deg, rgba(144, 202, 249, 0.50) 0%, rgba(33, 150, 243, 0.35) 50%, rgba(13, 71, 161, 0.45) 100%);
+    border-color: rgba(144, 202, 249, 0.80);
+    box-shadow: 0 0 10px rgba(66, 165, 245, 0.6), inset 0 1px 0 #ffffff;
+  }
+
+  /* System Tray */
+  .win7-systray {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 0 8px;
+  }
+  .win7-systray-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+    cursor: default;
+    font-size: 11px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  }
+  .win7-peek-desktop {
+    width: 12px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.18);
+    border-left: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .win7-peek-desktop:hover {
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  /* ── Start Menu Popup ── */
+  .win7-startmenu {
+    position: fixed;
+    bottom: 44px;
+    left: 8px;
+    width: 380px;
+    background: linear-gradient(180deg, rgba(235, 245, 255, 0.95) 0%, rgba(210, 230, 248, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 6px 6px 3px 3px;
+    box-shadow: 0 16px 40px rgba(0, 30, 70, 0.5), inset 0 1px 0 #ffffff;
+    z-index: 10000;
+    overflow: hidden;
+  }
+  .win7-startmenu-header {
+    background: linear-gradient(180deg, #186cb4 0%, #0d5aa0 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+  }
+
+  /* ── Timeline styles ── */
+  .aero-timeline { position: relative; padding-left: 1.75rem; }
+  .aero-timeline::before {
     content: '';
     position: absolute;
-    left: -2rem;
-    top: 6px;
+    left: 0.5rem; top: 0; bottom: 0;
+    width: 2px;
+    background: #90caf9;
+  }
+  .aero-timeline-dot {
+    position: absolute;
+    left: -1.75rem;
+    top: 0.35rem;
     width: 12px;
     height: 12px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    border: 3px solid var(--color-bg-primary);
-    transform: translateX(-5px);
-  }
-
-  .timeline-item:last-child {
-    padding-bottom: 0;
-  }
-
-  /* Typing Cursor */
-  .typing-cursor {
-    display: inline-block;
-    width: 3px;
-    height: 1.1em;
-    background: var(--color-accent);
-    margin-left: 4px;
-    animation: blink 1s step-end infinite;
-    vertical-align: text-bottom;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-
-  /* Navbar Active Link Indicator */
-  .nav-link {
-    position: relative;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-    padding: 0.5rem 0;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-accent);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .nav-link:hover,
-  .nav-link.active {
-    color: var(--color-accent);
-  }
-
-  .nav-link:hover::after,
-  .nav-link.active::after {
-    width: 100%;
+    border-radius: var(--r-sm);
+    background: linear-gradient(135deg, #4fc3f7, #0288d1);
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 6px rgba(2, 136, 209, 0.5);
+    transform: translateX(0.15rem);
   }
 }
 
-/* ───────────────────────────────────────────────────────
-   Reduced Motion Accessibility
-   ─────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   Reduced Motion
+═══════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
+  .aero-drift {
+    animation: none !important;
+  }
+}
 
-  html {
-    scroll-behavior: auto;
+/* ── Mobile: let the menubar / toolbar scroll instead of forcing overflow ── */
+@media (max-width: 640px) {
+  .win7-menubar {
+    overflow-x: auto;
+    scrollbar-width: none;
   }
-
-  .typing-cursor {
-    animation: none;
-    opacity: 1;
-  }
+  .win7-menubar::-webkit-scrollbar { display: none; }
+  .win7-toolbar { overflow-x: auto; scrollbar-width: none; }
+  .win7-toolbar::-webkit-scrollbar { display: none; }
+  .win7-menubar { flex-wrap: nowrap; }
+  .win7-menubar > * { flex-shrink: 0; }
+  .win7-address-bar { flex: 0 0 auto; min-width: 300px; }
+  .win7-header-banner { flex-wrap: wrap; gap: 10px; }
+  .win7-window { min-width: 0; }
 }

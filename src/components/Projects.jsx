@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
-import { FiGithub, FiFolder } from 'react-icons/fi';
+import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import AeroSprite from './AeroSprite';
 
 const projects = [
   {
+    sprite: 'data',
     title: 'FinApp Mobile',
     subtitle: 'AI-Powered Stock Market Analysis',
     role: 'AI Integration & Backend Logic Engineer',
@@ -14,6 +16,7 @@ const projects = [
     github: 'https://github.com/asda1-max/finappmobile.git',
   },
   {
+    sprite: 'cloud',
     title: 'EventSync',
     subtitle: 'Cloud-Based Event Organizer Platform',
     role: 'Mobile Developer',
@@ -25,6 +28,7 @@ const projects = [
     github: 'https://github.com/prettycoolflacko/EO_Mobile.git',
   },
   {
+    sprite: 'aurora',
     title: 'Real-Time PLTS Monitoring',
     subtitle: 'PLN Indonesia Power Internship',
     role: 'Backend & Software Developer',
@@ -36,107 +40,131 @@ const projects = [
     github: 'https://github.com/prettycoolflacko/PLN_IP-Isolar-WebScraping.git',
   },
   {
+    sprite: 'drop',
     title: 'CipherDrop',
     subtitle: 'Secure E2EE Messaging & File Sharing',
     role: 'Backend & Security Engineer',
     type: 'Group Project',
     year: '2026',
     description:
-      'A secure desktop messaging and file-sharing app with End-to-End Encryption, image steganography, and zero-knowledge architecture. I developed the FastAPI backend on VPS implementing AES-256-GCM and Vigenère super-encryption, keeping the server blind to plaintext.',
+      'A secure desktop messaging and file-sharing app with End-to-End Encryption, image steganography, and zero-knowledge architecture. I developed the FastAPI backend on VPS implementing AES-256-GCM and Vigenère super-encryption.',
     tags: ['Python', 'FastAPI', 'AES-256', 'VPS', 'E2EE', 'Security'],
     github: 'https://github.com/TedjaSatedji/cipherdrop.git',
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } },
-};
+const tagColors = ['skill-orb-sky', 'skill-orb-aqua', 'skill-orb-green', 'skill-orb-silver'];
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative bg-[var(--color-bg-secondary)]">
-      <hr className="gradient-divider" />
-      <div className="section-container">
+    <section id="projects" style={{ padding:'2rem 0 3rem' }}>
+      <div>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity:0, y:15 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }} transition={{ duration:0.4 }}
+          style={{ marginBottom: '1.25rem' }}
         >
-          <h2 className="section-title">Projects</h2>
-          <p className="section-subtitle">Things I've built and contributed to</p>
+          <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
+            <AeroSprite id="rocket" size={22} title="Projects" />
+            <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
+              Featured Projects
+            </h2>
+            <span style={{ color:'#4a7190', fontSize:'0.85rem', marginLeft:'auto' }}>
+              4 items · C:\Users\Elyuzar\Projects
+            </span>
+          </div>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="mt-12 grid md:grid-cols-2 gap-10"
-        >
-          {projects.map((project) => (
+        {/* Project Cards Grid (Square!) */}
+        <div style={{ display:'grid', gap:'1.5rem', gridTemplateColumns:'repeat(auto-fit, minmax(320px, 1fr))' }}>
+          {projects.map((project, i) => (
             <motion.div
               key={project.title}
-              variants={cardVariants}
-              className="glass-card p-8 flex flex-col h-full group"
+              initial={{ opacity:0, y:20 }}
+              whileInView={{ opacity:1, y:0 }}
+              viewport={{ once:true }}
+              transition={{ duration:0.4, delay: i * 0.1 }}
+              className="glass-card"
+              style={{ display:'flex', flexDirection:'column', borderRadius: 3 }}
             >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)]">
-                  <FiFolder className="text-2xl" />
+              {/* Window-like folder header strip */}
+              <div style={{
+                background:'linear-gradient(180deg, #f2f7fc 0%, #e1eefa 100%)',
+                borderBottom:'1px solid #c2d7eb',
+                padding:'6px 12px',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'space-between',
+                fontSize:'11px',
+                color:'#1a4e70',
+              }}>
+                <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
+                  <AeroSprite id="folder" size={16} />
+                  <span style={{ fontWeight:700 }}>{project.title}</span>
                 </div>
-                <div className="flex items-center gap-4">
+                <span style={{ color:'#4a7190', fontWeight:600 }}>{project.year} · {project.type}</span>
+              </div>
+
+              {/* Themed screenshot placeholder (water-surface backdrop) */}
+              <div
+                className="img-placeholder"
+                style={{
+                  height:140, margin:'0.85rem 0.85rem 0', borderRadius:2,
+                  background:'linear-gradient(180deg, #d7f2f7 0%, #8fd8ea 55%, #4fc3f7 100%)',
+                  color:'#0b3863',
+                }}
+              >
+                {/* ── PROJECT SCREENSHOT PLACEHOLDER ── */}
+                <AeroSprite id={project.sprite} size={52} />
+                <span style={{ fontWeight:700, color:'#0b3863' }}>{project.title} Preview</span>
+                <span style={{ fontSize:'10px', color:'#0d47a1', opacity:.8 }}>Drop image in public/screenshots/</span>
+              </div>
+
+              {/* Content body */}
+              <div style={{ padding:'1rem 1rem 1.25rem', display:'flex', flexDirection:'column', flex:1 }}>
+                <h3 style={{ fontWeight:700, fontSize:'1.1rem', color:'#0d3a5c', margin:'0 0 0.2rem' }}>
+                  {project.title}
+                </h3>
+                <p style={{ color:'#0288d1', fontWeight:600, fontSize:'0.82rem', margin:'0 0 0.65rem' }}>
+                  {project.subtitle} · <span style={{ color:'#4a7190' }}>{project.role}</span>
+                </p>
+
+                <p style={{ color:'#1a4e70', fontSize:'0.88rem', lineHeight:1.6, flex:1, marginBottom:'1rem' }}>
+                  {project.description}
+                </p>
+
+                {/* Square Tech Tags */}
+                <div style={{ display:'flex', flexWrap:'wrap', gap:'4px', marginBottom:'1rem' }}>
+                  {project.tags.map((tag, ti) => (
+                    <span
+                      key={tag}
+                      className={`skill-orb ${tagColors[ti % tagColors.length]}`}
+                      style={{ fontSize:'11px', padding:'2px 7px', borderRadius:2 }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Windows 7 Aero Button (Square!) */}
+                <div style={{ display:'flex', gap:'8px', marginTop:'auto' }}>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${project.title} GitHub`}
-                    className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-200 text-xl"
+                    className="aero-btn aero-btn-sky"
+                    style={{ flex:1, fontSize:'12px', padding:'6px 12px' }}
                   >
-                    <FiGithub />
+                    <FiGithub style={{ position:'relative', zIndex:1 }} />
+                    <span style={{ position:'relative', zIndex:1 }}>Repository</span>
+                    <FiExternalLink style={{ position:'relative', zIndex:1, fontSize:'10px' }} />
                   </a>
                 </div>
               </div>
-
-              {/* Title */}
-              <h3 className="font-[var(--font-heading)] text-xl font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300">
-                {project.title}
-              </h3>
-              <p className="text-[var(--color-text-primary)] text-base font-medium mb-4">
-                {project.subtitle}
-              </p>
-
-              {/* Meta */}
-              <div className="flex items-center gap-3 text-sm text-[var(--color-text-muted)] mb-6">
-                <span>{project.role}</span>
-                <span>·</span>
-                <span>{project.type}</span>
-                <span>·</span>
-                <span>{project.year}</span>
-              </div>
-
-              {/* Description */}
-              <p className="text-[var(--color-text-secondary)] text-base leading-relaxed flex-1 mb-8">
-                {project.description}
-              </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-3 mt-auto">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="tech-tag text-xs">
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

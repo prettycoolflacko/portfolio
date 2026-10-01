@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiBriefcase } from 'react-icons/fi';
+import AeroSprite from './AeroSprite';
 
 const experiences = [
   {
@@ -31,54 +31,63 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative">
-      <hr className="gradient-divider" />
-      <div className="section-container">
+    <section id="experience" style={{ padding:'2rem 0 3rem' }}>
+      <div>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity:0, y:15 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }} transition={{ duration:0.4 }}
+          style={{ marginBottom: '1.25rem' }}
         >
-          <h2 className="section-title">Experience</h2>
-          <p className="section-subtitle">Where I've worked and contributed</p>
+          <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
+            <AeroSprite id="briefcase" size={22} title="Work Experience" />
+            <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
+              Work Experience
+            </h2>
+            <span style={{ color:'#4a7190', fontSize:'0.85rem', marginLeft:'auto' }}>
+              Event Log · Career History
+            </span>
+          </div>
         </motion.div>
 
-        <div className="mt-12 timeline">
+        <div className="aero-timeline" style={{ maxWidth:820 }}>
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.title}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="timeline-item"
+              initial={{ opacity:0, x:-15 }} whileInView={{ opacity:1, x:0 }}
+              viewport={{ once:true }}
+              transition={{ duration:0.35, delay:i * 0.1 }}
+              style={{ position:'relative', marginBottom: i < experiences.length - 1 ? '1.5rem' : 0 }}
             >
-              <div className="glass-card p-8">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-[var(--color-accent-subtle)] border border-[rgba(0,201,255,0.12)] flex items-center justify-center text-[var(--color-accent)] shrink-0 mt-0.5">
-                    <FiBriefcase className="text-base" />
-                  </div>
+              {/* Square Timeline marker */}
+              <div className="aero-timeline-dot" />
+
+              <div className="glass-card" style={{ padding:'1.25rem 1.5rem', borderRadius: 3 }}>
+                {/* Header */}
+                <div style={{ display:'flex', alignItems:'flex-start', gap:'10px', marginBottom:'0.65rem' }}>
+                  <AeroSprite id="briefcase" size={32} />
                   <div>
-                    <h3 className="font-[var(--font-heading)] text-base font-bold text-[var(--color-text-primary)]">
+                    <h3 style={{ fontWeight:700, fontSize:'0.95rem', color:'#0d3a5c', margin:0 }}>
                       {exp.title}
                     </h3>
-                    <p className="text-[var(--color-accent)] text-sm font-[var(--font-mono)]">
+                    <p style={{ color:'#0288d1', fontWeight:600, fontSize:'0.85rem', marginTop:'2px', marginBottom:0 }}>
                       {exp.company}
                     </p>
-                    <p className="text-[var(--color-text-muted)] text-xs font-[var(--font-mono)] mt-1">
+                    <p style={{ color:'#4a7190', fontSize:'0.75rem', fontWeight:600, marginTop:'2px', marginBottom:0 }}>
                       {exp.period}
                     </p>
                   </div>
                 </div>
 
-                <ul className="list-none space-y-2 ml-12">
-                  {exp.bullets.map((bullet, j) => (
-                    <li
-                      key={j}
-                      className="text-[var(--color-text-secondary)] text-sm leading-relaxed relative pl-4 before:content-['▹'] before:text-[var(--color-accent)] before:absolute before:left-0 before:top-0"
-                    >
-                      {bullet}
+                {/* Bullets */}
+                <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:'0.3rem' }}>
+                  {exp.bullets.map((b, j) => (
+                    <li key={j} style={{
+                      color:'#1a4e70', fontSize:'0.86rem', lineHeight:1.5,
+                      paddingLeft:'1.1rem', position:'relative',
+                    }}>
+                      <span style={{ position:'absolute', left:0, color:'#0288d1', fontWeight:700 }}>▸</span>
+                      {b}
                     </li>
                   ))}
                 </ul>
