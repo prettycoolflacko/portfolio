@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FiDownload, FiArrowDown } from 'react-icons/fi';
 import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 import profileImg from '../assets/profile.webp';
 
 const roles = ['Backend Engineer', 'Mobile Developer', 'Data Enthusiast', 'Full-Stack Developer'];
@@ -148,7 +149,7 @@ export default function Hero() {
               <span style={{ position:'relative', zIndex:1 }}>Download CV</span>
             </a>
             <a href="#contact" className="aero-btn aero-btn-green">
-              <AeroSprite id="mail" size={16} />
+              <VistaIcon id="envelope" size={17} />
               <span style={{ position:'relative', zIndex:1 }}>Get in Touch</span>
             </a>
           </motion.div>

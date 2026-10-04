@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 
 const skillGroups = [
   {
@@ -8,17 +8,17 @@ const skillGroups = [
     skills: ['Python', 'JavaScript', 'PHP', 'C++', 'Java', 'SQL'],
   },
   {
-    sprite: 'layers',
+    sprite: 'blocks',
     title: 'Frameworks & Libraries',
     skills: ['FastAPI', 'React Native', 'Express.js', 'Flutter', 'TailwindCSS'],
   },
   {
-    sprite: 'tool',
+    sprite: 'network',
     title: 'Tools & Infrastructure',
     skills: ['Git/GitHub', 'Linux', 'VPS', 'REST APIs', 'Redis', 'MQTT', 'IoT Hardware'],
   },
   {
-    sprite: 'film',
+    sprite: 'paint',
     title: 'Creative & Multimedia',
     skills: ['Adobe Premiere Pro', 'Photoshop', 'Videography', 'Graphic Design'],
   },
@@ -37,7 +37,7 @@ export default function Skills() {
           style={{ marginBottom: '1.25rem' }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
-            <AeroSprite id="bolt" size={22} title="Technical Skills" />
+            <VistaIcon id="tool" size={24} title="Technical Skills" />
             <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
               Technical Skills
             </h2>
@@ -61,7 +61,7 @@ export default function Skills() {
             >
               {/* Group header */}
               <div style={{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'1rem' }}>
-                <AeroSprite id={group.sprite} size={34} />
+                <VistaIcon id={group.sprite} size={36} />
                 <h3 style={{ fontWeight:700, fontSize:'0.95rem', color:'#0d3a5c', margin:0 }}>
                   {group.title}
                 </h3>

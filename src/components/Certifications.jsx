@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 
 const certifications = [
   { title: 'BNSP Junior Web Programmer', issuer: 'BNSP',        date: 'Nov 2025', color: 'sky' },
@@ -21,7 +21,7 @@ export default function Certifications() {
           style={{ marginBottom: '1.25rem' }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
-            <AeroSprite id="medal" size={22} title="Certifications" />
+            <VistaIcon id="certificate" size={24} title="Certifications" />
             <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
               Certifications & Honors
             </h2>
@@ -42,7 +42,7 @@ export default function Certifications() {
               className="glass-card"
               style={{ padding:'1rem 1.1rem', display:'flex', alignItems:'flex-start', gap:'10px', borderRadius: 3 }}
             >
-              <AeroSprite id="medal" size={32} />
+              <VistaIcon id="certificate" size={34} />
               <div style={{ minWidth:0 }}>
                 <h3 style={{
                   fontWeight:700, fontSize:'0.88rem',

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiBookOpen } from 'react-icons/fi';
-import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 
 const education = [
   {
@@ -38,7 +37,7 @@ export default function Education() {
           style={{ marginBottom: '1.25rem' }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
-            <AeroSprite id="book" size={22} title="Education" />
+            <VistaIcon id="book" size={24} title="Education" />
             <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
               Education History
             </h2>
@@ -59,7 +58,7 @@ export default function Education() {
               transition={{ duration:0.35, delay:i * 0.1 }}
             >
               <div style={{ display:'flex', alignItems:'flex-start', gap:'10px', marginBottom:'0.75rem' }}>
-                <AeroSprite id="book" size={32} />
+                <VistaIcon id="book" size={34} />
                 <div style={{ flex:1, minWidth:0 }}>
                   <h3 style={{ fontWeight:700, fontSize:'0.95rem', color:'#0d3a5c', margin:0 }}>
                     {edu.degree}

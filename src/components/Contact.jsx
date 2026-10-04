@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiSend } from 'react-icons/fi';
 import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 
 const contactInfo = [
-  { sprite: 'mail',    label: 'Email',     value: 'elyuzarf@gmail.com',         href: 'mailto:elyuzarf@gmail.com' },
-  { sprite: 'phone',   label: 'Phone',     value: '+62 812-2794-8664',          href: 'tel:+6281227948664' },
-  { sprite: 'web',     label: 'Portfolio', value: 'portfolio.anirveda.rocks',   href: 'https://portfolio.anirveda.rocks' },
+  { sprite: 'envelope', label: 'Email',     value: 'elyuzarf@gmail.com',         href: 'mailto:elyuzarf@gmail.com' },
+  { sprite: 'phone',    label: 'Phone',     value: '+62 812-2794-8664',          href: 'tel:+6281227948664' },
+  { sprite: 'web',      label: 'Portfolio', value: 'portfolio.anirveda.rocks',   href: 'https://portfolio.anirveda.rocks' },
 ];
 
 const socials = [
@@ -37,7 +37,7 @@ export default function Contact() {
           style={{ marginBottom: '1.25rem' }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
-            <AeroSprite id="mail" size={22} title="Get In Touch" />
+            <VistaIcon id="envelope" size={24} title="Get In Touch" />
             <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
               Get In Touch
             </h2>
@@ -62,7 +62,7 @@ export default function Contact() {
                 className="glass-card"
                 style={{ padding:'1rem 1.25rem', display:'flex', alignItems:'center', gap:'12px', textDecoration:'none', borderRadius: 3 }}
               >
-                <AeroSprite id={info.sprite} size={30} />
+                <VistaIcon id={info.sprite} size={32} />
               <div style={{ minWidth:0 }}>
                   <p style={{ color:'#4a7190', fontSize:'0.7rem', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.06em', margin:0 }}>
                     {info.label}
@@ -134,7 +134,7 @@ export default function Contact() {
             </div>
 
             <button type="submit" className="aero-btn aero-btn-sky" style={{ width:'100%', fontSize:'13px', padding:'8px 14px' }}>
-              <FiSend style={{ position:'relative', zIndex:1 }} />
+              <VistaIcon id="envelope" size={17} />
               <span style={{ position:'relative', zIndex:1 }}>Send Message</span>
             </button>
           </motion.form>

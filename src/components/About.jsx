@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 import profileImg from '../assets/profile.webp';
 
 const stats = [
-  { sprite: 'award',  label: 'GPA',       value: '3.67',             color: 'sky' },
-  { sprite: 'mappin', label: 'Based in',   value: 'Yogyakarta, ID',   color: 'green' },
-  { sprite: 'user',   label: 'Semester',   value: '6th',              color: 'aqua' },
-  { sprite: 'globe',  label: 'TOEFL ITP',  value: '557',             color: 'silver' },
+  { sprite: 'star',      label: 'GPA',       value: '3.67',             color: 'sky' },
+  { sprite: 'earth',     label: 'Based in',   value: 'Yogyakarta, ID',   color: 'green' },
+  { sprite: 'calendar',  label: 'Semester',   value: '6th',              color: 'aqua' },
+  { sprite: 'certificate', label: 'TOEFL ITP',  value: '557',             color: 'silver' },
 ];
 
 export default function About() {
@@ -20,7 +20,7 @@ export default function About() {
           style={{ marginBottom: '1.25rem' }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
-            <AeroSprite id="globe" size={22} title="About Me" />
+            <VistaIcon id="user" size={24} title="About Me" />
             <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
               About Me
             </h2>
@@ -96,7 +96,7 @@ export default function About() {
             {stats.map(s => (
               <div key={s.label} className="glass-card" style={{ padding:'1.1rem', borderRadius: 3 }}>
                 <div style={{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'0.4rem' }}>
-                  <AeroSprite id={s.sprite} size={28} />
+                  <VistaIcon id={s.sprite} size={30} />
                   <span style={{ fontSize:'0.75rem', fontWeight:600, color:'#4a7190', textTransform:'uppercase', letterSpacing:'0.05em' }}>
                     {s.label}
                   </span>
@@ -110,7 +110,7 @@ export default function About() {
             {/* Quick summary gadget box */}
             <div className="glass-card" style={{ gridColumn:'span 2', padding:'1rem 1.2rem', borderRadius:3, background:'linear-gradient(180deg, #f7fbff, #eaf2fa)' }}>
               <div style={{ display:'flex', alignItems:'center', gap:'6px', marginBottom:'4px' }}>
-                <AeroSprite id="bolt" size={16} />
+                <VistaIcon id="lightbulb" size={17} />
                 <span style={{ fontSize:'12px', fontWeight:700, color:'#0d3a5c' }}>Status & Focus</span>
               </div>
               <p style={{ margin:0, fontSize:'12px', color:'#2c5475', lineHeight:1.5 }}>

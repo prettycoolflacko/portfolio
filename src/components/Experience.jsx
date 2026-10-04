@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 
 const experiences = [
   {
@@ -40,7 +40,7 @@ export default function Experience() {
           style={{ marginBottom: '1.25rem' }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
-            <AeroSprite id="briefcase" size={22} title="Work Experience" />
+            <VistaIcon id="briefcase" size={24} title="Work Experience" />
             <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
               Work Experience
             </h2>
@@ -65,7 +65,7 @@ export default function Experience() {
               <div className="glass-card" style={{ padding:'1.25rem 1.5rem', borderRadius: 3 }}>
                 {/* Header */}
                 <div style={{ display:'flex', alignItems:'flex-start', gap:'10px', marginBottom:'0.65rem' }}>
-                  <AeroSprite id="briefcase" size={32} />
+                  <VistaIcon id="briefcase" size={34} />
                   <div>
                     <h3 style={{ fontWeight:700, fontSize:'0.95rem', color:'#0d3a5c', margin:0 }}>
                       {exp.title}

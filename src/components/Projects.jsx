@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
-import AeroSprite from './AeroSprite';
+import VistaIcon from './VistaIcon';
 
 const projects = [
   {
-    sprite: 'data',
+    sprite: 'chart',
     title: 'FinApp Mobile',
     subtitle: 'AI-Powered Stock Market Analysis',
     role: 'AI Integration & Backend Logic Engineer',
@@ -16,7 +16,7 @@ const projects = [
     github: 'https://github.com/asda1-max/finappmobile.git',
   },
   {
-    sprite: 'cloud',
+    sprite: 'web',
     title: 'EventSync',
     subtitle: 'Cloud-Based Event Organizer Platform',
     role: 'Mobile Developer',
@@ -28,7 +28,7 @@ const projects = [
     github: 'https://github.com/prettycoolflacko/EO_Mobile.git',
   },
   {
-    sprite: 'aurora',
+    sprite: 'computer',
     title: 'Real-Time PLTS Monitoring',
     subtitle: 'PLN Indonesia Power Internship',
     role: 'Backend & Software Developer',
@@ -40,7 +40,7 @@ const projects = [
     github: 'https://github.com/prettycoolflacko/PLN_IP-Isolar-WebScraping.git',
   },
   {
-    sprite: 'drop',
+    sprite: 'lock',
     title: 'CipherDrop',
     subtitle: 'Secure E2EE Messaging & File Sharing',
     role: 'Backend & Security Engineer',
@@ -66,7 +66,7 @@ export default function Projects() {
           style={{ marginBottom: '1.25rem' }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'8px', borderBottom:'1px solid #c2d7eb', paddingBottom:'6px' }}>
-            <AeroSprite id="rocket" size={22} title="Projects" />
+            <VistaIcon id="folder" size={24} title="Projects" />
             <h2 style={{ fontSize:'1.3rem', fontWeight:700, color:'#0d3a5c', margin:0 }}>
               Featured Projects
             </h2>
@@ -100,7 +100,7 @@ export default function Projects() {
                 color:'#1a4e70',
               }}>
                 <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
-                  <AeroSprite id="folder" size={16} />
+                  <VistaIcon id="folder" size={16} />
                   <span style={{ fontWeight:700 }}>{project.title}</span>
                 </div>
                 <span style={{ color:'#4a7190', fontWeight:600 }}>{project.year} · {project.type}</span>
@@ -116,7 +116,7 @@ export default function Projects() {
                 }}
               >
                 {/* ── PROJECT SCREENSHOT PLACEHOLDER ── */}
-                <AeroSprite id={project.sprite} size={52} />
+                <VistaIcon id={project.sprite} size={52} />
                 <span style={{ fontWeight:700, color:'#0b3863' }}>{project.title} Preview</span>
                 <span style={{ fontSize:'10px', color:'#0d47a1', opacity:.8 }}>Drop image in public/screenshots/</span>
               </div>

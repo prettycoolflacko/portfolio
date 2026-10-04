@@ -1,8 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  FiSearch, FiVolume2, FiWifi, FiFlag
-} from 'react-icons/fi';
 
 import Hero from './components/Hero';
 import About from './components/About';
@@ -14,6 +11,7 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AeroSprite from './components/AeroSprite';
+import VistaIcon from './components/VistaIcon';
 import profileImg from './assets/profile.webp';
 
 export default function App() {
@@ -128,27 +126,27 @@ export default function App() {
         zIndex: 5,
       }} className="hidden md:flex">
         <div className="win7-desktop-icon" onClick={() => scrollToSection('hero')}>
-          <AeroSprite id="monitor" size={34} title="My Computer" />
+          <VistaIcon id="computer" size={34} title="My Computer" />
           <span className="win7-desktop-icon-label">Computer</span>
         </div>
         <div className="win7-desktop-icon" onClick={() => scrollToSection('about')}>
-          <AeroSprite id="globe" size={34} title="Elyuzar" />
+          <VistaIcon id="userfolder" size={34} title="Elyuzar" />
           <span className="win7-desktop-icon-label">Elyuzar</span>
         </div>
         <div className="win7-desktop-icon" onClick={() => scrollToSection('projects')}>
-          <AeroSprite id="folder" size={34} title="Projects" />
+          <VistaIcon id="folder" size={34} title="Projects" />
           <span className="win7-desktop-icon-label">Projects</span>
         </div>
         <a href="./assets/Elyuzar_CV.pdf" download className="win7-desktop-icon" style={{ textDecoration: 'none' }}>
-          <AeroSprite id="document" size={34} title="Elyuzar_CV" />
+          <VistaIcon id="document" size={34} title="Elyuzar_CV" />
           <span className="win7-desktop-icon-label">Elyuzar_CV</span>
         </a>
         <a href="https://github.com/prettycoolflacko" target="_blank" rel="noopener noreferrer" className="win7-desktop-icon" style={{ textDecoration: 'none' }}>
-          <AeroSprite id="web" size={34} title="GitHub" />
+          <VistaIcon id="earth" size={34} title="GitHub" />
           <span className="win7-desktop-icon-label">GitHub</span>
         </a>
         <div className="win7-desktop-icon" onClick={() => alert('Recycle Bin is currently empty.')}>
-          <AeroSprite id="recycle" size={34} title="Recycle Bin" />
+          <VistaIcon id="recycle" size={34} title="Recycle Bin" />
           <span className="win7-desktop-icon-label">Recycle Bin</span>
         </div>
       </div>
@@ -174,8 +172,8 @@ export default function App() {
             {/* ── Windows 7 Aero Title Bar ── */}
             <div className="win7-titlebar">
               <div className="win7-title-content">
-                {/* Aero glossy monitor sprite */}
-                <AeroSprite id="monitor" size={20} title="Portfolio window" />
+                {/* Vista/7 My Computer window icon */}
+                <VistaIcon id="computer" size={20} title="Portfolio window" />
                 <span>Elyuzar Fazlurrahman — Portfolio</span>
               </div>
 
@@ -223,7 +221,7 @@ export default function App() {
                 className="win7-menu-item"
                 style={{ marginLeft: 'auto', textDecoration: 'none', color: '#0288d1', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
               >
-                <AeroSprite id="document" size={14} />
+                <VistaIcon id="document" size={15} />
                 Download CV
               </a>
             </div>
@@ -247,7 +245,7 @@ export default function App() {
 
               {/* Breadcrumb address bar */}
               <div className="win7-address-bar">
-                <AeroSprite id="monitor" size={14} />
+                <VistaIcon id="computer" size={14} />
                 <span className="win7-address-segment" onClick={() => scrollToSection('hero')}>Computer</span>
                 <span>›</span>
                 <span className="win7-address-segment" onClick={() => scrollToSection('hero')}>Local Disk (C:)</span>
@@ -261,10 +259,10 @@ export default function App() {
                 </span>
                 <button
                   onClick={() => window.location.reload()}
-                  style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#4a7190', padding: '0 4px' }}
+                  style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', padding: '0 4px', display: 'flex', alignItems: 'center' }}
                   title="Refresh"
                 >
-                  ⟳
+                  <VistaIcon id="refresh" size={15} />
                 </button>
               </div>
 
@@ -279,7 +277,7 @@ export default function App() {
                 gap: 6,
                 width: 170,
               }} className="hidden sm:flex">
-                <FiSearch style={{ color: '#4a7190', fontSize: '12px' }} />
+                <VistaIcon id="search" size={14} title="Search" />
                 <input
                   type="text"
                   placeholder="Search portfolio..."
@@ -310,8 +308,8 @@ export default function App() {
                   justifyContent: 'center',
                   flexShrink: 0,
                 }}>
-                  {/* Glossy globe behind the monitor */}
-                  <AeroSprite id="globe" size={46} style={{ position: 'absolute', left: 0, top: 0 }} />
+                  {/* Authentic Win7 Earth globe behind the monitor */}
+                  <VistaIcon id="earth" size={46} style={{ position: 'absolute', left: 0, top: 0 }} />
                   {/* Glossy LCD screen in front */}
                   <div style={{
                     position: 'relative',
@@ -365,9 +363,7 @@ export default function App() {
 
             {/* ── Info Sub-Bar (Exact replica from user's uploaded screenshot!) ── */}
             <div className="win7-infobar">
-              <span className="win7-info-sphere" title="Information">
-                i
-              </span>
+              <VistaIcon id="info" size={28} title="Information" />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{
                   margin: 0,
@@ -436,7 +432,7 @@ export default function App() {
             className="aero-btn aero-btn-sky"
             style={{ padding: '12px 28px', fontSize: '15px', boxShadow: '0 8px 32px rgba(0,0,0,0.4)', display: 'inline-flex', alignItems: 'center', gap: 10 }}
           >
-            <AeroSprite id="monitor" size={20} />
+            <VistaIcon id="computer" size={20} />
             Restore Elyuzar's Portfolio Window
           </button>
         </div>
@@ -501,11 +497,11 @@ export default function App() {
                   System Places
                 </div>
                 <a href="./assets/Elyuzar_CV.pdf" download style={{ textDecoration: 'none', color: '#1a4e70', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <AeroSprite id="document" size={18} />
+                  <VistaIcon id="document" size={18} />
                   Resume / CV
                 </a>
                 <a href="https://github.com/prettycoolflacko" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#1a4e70', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <AeroSprite id="web" size={18} />
+                  <VistaIcon id="earth" size={18} />
                   GitHub Profile
                 </a>
                 <a href="https://www.linkedin.com/in/elyuzar-f" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#1a4e70', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -513,7 +509,7 @@ export default function App() {
                   LinkedIn
                 </a>
                 <a href="mailto:elyuzarf@gmail.com" style={{ textDecoration: 'none', color: '#1a4e70', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <AeroSprite id="mail" size={18} />
+                  <VistaIcon id="envelope" size={18} />
                   Send Email
                 </a>
               </div>
@@ -569,7 +565,7 @@ export default function App() {
             >
               <div className="win7-titlebar">
                 <span className="win7-title-content">
-                  <AeroSprite id="warn" size={18} />
+                  <VistaIcon id="warn" size={18} />
                   Windows Security Dialog
                 </span>
                 <button
@@ -580,7 +576,7 @@ export default function App() {
                 </button>
               </div>
               <div style={{ background: '#ffffff', padding: '20px 24px', display: 'flex', gap: 16 }}>
-                <AeroSprite id="monitor" size={38} />
+                <VistaIcon id="computer" size={38} />
                 <div>
                   <h4 style={{ margin: '0 0 6px', color: '#0d3a5c', fontSize: '14px', fontWeight: 700 }}>
                     Close Elyuzar's Portfolio?
@@ -621,18 +617,17 @@ export default function App() {
       {/* ── Windows 7 Aero Taskbar (Superbar) ── */}
       <div className="win7-taskbar">
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          {/* Windows 7 Start Orb */}
+          {/* Windows 7 waving 4-color flag orb */}
           <div
             className="win7-start-orb"
             title="Start"
             onClick={() => setShowStartMenu(!showStartMenu)}
           >
-            {/* Windows 4-color flag SVG */}
-            <svg width="22" height="22" viewBox="0 0 88 88" fill="none">
-              <path d="M0 12.5L35.8 7.6V41.7H0V12.5Z" fill="#F25022"/>
-              <path d="M42.4 6.7L88 0V41.7H42.4V6.7Z" fill="#7FBA00"/>
-              <path d="M0 46.3H35.8V80.4L0 75.5V46.3Z" fill="#00A4EF"/>
-              <path d="M42.4 46.3H88V88L42.4 81.3V46.3Z" fill="#FFB900"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M3.4 7.6Q7.4 5.7 11.4 6.2L11.4 11.9Q7.4 11.4 3.4 13.3Z" fill="#f25022"/>
+              <path d="M12.6 6.3Q16.6 6.8 20.6 5.9L20.6 11.6Q16.6 12.5 12.6 12Z" fill="#7fba00"/>
+              <path d="M3.4 14.5Q7.4 12.6 11.4 13.1L11.4 18.8Q7.4 18.3 3.4 20.2Z" fill="#00a4ef"/>
+              <path d="M12.6 13.2Q16.6 13.7 20.6 12.8L20.6 18.5Q16.6 19.4 12.6 18.9Z" fill="#ffb900"/>
             </svg>
           </div>
 
@@ -643,7 +638,7 @@ export default function App() {
               onClick={() => setIsMinimized(!isMinimized)}
               title="Elyuzar Fazlurrahman - Portfolio"
             >
-              <AeroSprite id="monitor" size={18} />
+              <VistaIcon id="computer" size={18} />
               <span className="hidden sm:inline">Elyuzar Fazlurrahman — Portfolio</span>
             </div>
           )}
@@ -651,9 +646,9 @@ export default function App() {
 
         {/* System Tray (Right Side) */}
         <div className="win7-systray">
-          <FiFlag style={{ cursor: 'pointer', fontSize: '13px' }} title="Action Center" />
-          <FiWifi style={{ cursor: 'pointer', fontSize: '13px' }} title="Internet access" />
-          <FiVolume2 style={{ cursor: 'pointer', fontSize: '13px' }} title="Speakers: 100%" />
+          <VistaIcon id="flag" size={15} title="Action Center" />
+          <VistaIcon id="wifi" size={15} title="Internet access" />
+          <VistaIcon id="volume" size={15} title="Speakers: 100%" />
 
           {/* Date & Time */}
           <div className="win7-systray-clock" title={new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
