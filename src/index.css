@@ -64,6 +64,7 @@
     scroll-behavior: smooth;
     scroll-padding-top: 20px;
     height: 100%;
+    overflow-x: clip;
   }
 
   body {
@@ -71,7 +72,7 @@
     color: var(--text-primary);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -164,7 +165,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
     user-select: none;
   }
   .win7-desktop-icon:hover {
@@ -199,7 +200,7 @@
     border-radius: 6px 6px 3px 3px;
     box-shadow: var(--win7-glass-shadow), inset 0 1px 0 rgba(255,255,255,0.85);
     overflow: hidden;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-radius 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Aero glass diagonal reflection light streak */
@@ -264,7 +265,7 @@
     font-weight: 700;
     cursor: pointer;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.60);
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
   }
   .win7-btn-ctrl:hover {
     background: linear-gradient(180deg, #e3f2fd 0%, #bbdefb 49%, #90caf9 50%, #b3e5fc 100%);
@@ -309,7 +310,7 @@
     border-radius: 2px;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
   }
   .win7-menu-item:hover, .win7-menu-item.active {
     background: linear-gradient(180deg, #f3f8fe 0%, #e1eefa 100%);
@@ -343,7 +344,7 @@
     color: #0d47a1;
     font-size: 12px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
   }
   .win7-nav-btn:hover {
     box-shadow: 0 0 6px rgba(38, 198, 218, 0.7), inset 0 1px 0 rgba(255,255,255,1);
@@ -486,7 +487,7 @@
     cursor: pointer;
     text-decoration: none;
     box-shadow: inset 0 1px 0 #ffffff, inset 0 0 1px rgba(255,255,255,0.8);
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
     white-space: nowrap;
     user-select: none;
   }
@@ -560,7 +561,7 @@
     border-radius: var(--r-sm);
     border: 1px solid #9bb7d4;
     cursor: default;
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
     white-space: nowrap;
     user-select: none;
   }
@@ -631,7 +632,7 @@
     color: #1b4e72;
     text-decoration: none;
     box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0,0,0,0.08);
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
   }
   .social-btn:hover {
     background: linear-gradient(180deg, #f2f9ff 0%, #cbe5fb 50%, #9bcbf7 100%);
@@ -762,7 +763,7 @@
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     text-shadow: 0 1px 2px rgba(0,0,0,0.8);
   }
   .win7-task-tab:hover, .win7-task-tab.active {
@@ -847,6 +848,150 @@
     box-shadow: 0 0 6px rgba(2, 136, 209, 0.5);
     transform: translateX(0.15rem);
   }
+
+  /* ═══════════════════════════════════════════════════════
+     Part 3 Frutiger Aero Keyframe Animations & Effects
+  ═══════════════════════════════════════════════════════ */
+
+  /* Glass Sheen Sweep */
+  @keyframes aero-sheen-sweep {
+    0%   { transform: translateX(-100%) rotate(25deg); opacity: 0; }
+    20%  { opacity: 0.85; }
+    80%  { opacity: 0.85; }
+    100% { transform: translateX(260%) rotate(25deg); opacity: 0; }
+  }
+
+  /* Rising Bubbles */
+  @keyframes aero-rise {
+    0% {
+      transform: translateY(0);
+      opacity: 0.2;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    90% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-115vh);
+      opacity: 0;
+    }
+  }
+
+  /* Horizontal Bubble Sine Wobble */
+  @keyframes aero-wobble {
+    0%   { transform: translateX(-16px); }
+    100% { transform: translateX(16px); }
+  }
+
+  /* Aurora Drift */
+  @keyframes aero-aurora-drift-1 {
+    0%   { transform: rotate(-8deg) translate(0, 0) scale(1); }
+    50%  { transform: rotate(-4deg) translate(30px, -20px) scale(1.08); }
+    100% { transform: rotate(-8deg) translate(-20px, 25px) scale(0.96); }
+  }
+  @keyframes aero-aurora-drift-2 {
+    0%   { transform: rotate(5deg) translate(0, 0) scale(1); }
+    50%  { transform: rotate(2deg) translate(-35px, 20px) scale(1.06); }
+    100% { transform: rotate(6deg) translate(25px, -30px) scale(0.95); }
+  }
+
+  /* Swimming Fish */
+  @keyframes aero-swim-ltr {
+    0%   { transform: translateX(-120px) scaleX(1); }
+    49%  { transform: translateX(calc(100vw + 100px)) scaleX(1); }
+    50%  { transform: translateX(calc(100vw + 100px)) scaleX(-1); }
+    99%  { transform: translateX(-120px) scaleX(-1); }
+    100% { transform: translateX(-120px) scaleX(1); }
+  }
+  @keyframes aero-swim-rtl {
+    0%   { transform: translateX(calc(100vw + 100px)) scaleX(-1); }
+    49%  { transform: translateX(-120px) scaleX(-1); }
+    50%  { transform: translateX(-120px) scaleX(1); }
+    99%  { transform: translateX(calc(100vw + 100px)) scaleX(1); }
+    100% { transform: translateX(calc(100vw + 100px)) scaleX(-1); }
+  }
+  @keyframes aero-tail-wiggle {
+    0%   { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+  }
+
+  /* Flora Drift */
+  @keyframes aero-flora-drift {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(45px, 35px); }
+  }
+  @keyframes aero-butterfly-flutter {
+    0%   { transform: rotate(-6deg) scale(0.95); }
+    100% { transform: rotate(6deg) scale(1.05); }
+  }
+  @keyframes aero-leaf-tumble {
+    0%   { transform: rotate(-18deg); }
+    100% { transform: rotate(18deg); }
+  }
+
+  /* Expanding Water Ripple */
+  @keyframes aero-ripple-expand {
+    0% {
+      transform: scale(0.2);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(3.5);
+      opacity: 0;
+    }
+  }
+
+  /* Windows 7 Green Progress Bar Moving Shine */
+  @keyframes win7-progress-glow {
+    0%   { background-position: 0 0; }
+    100% { background-position: 40px 0; }
+  }
+
+  /* Taskbar flash pulse */
+  .flash-pulse {
+    animation: aero-task-flash 800ms ease-in-out;
+  }
+  @keyframes aero-task-flash {
+    0%, 100% { border-color: rgba(255, 255, 255, 0.45); }
+    50%      { border-color: #ffd54f; box-shadow: 0 0 12px #ffd54f; }
+  }
+
+  /* Tree & Table row hover refinements */
+  .win7-tree-row:hover {
+    background: rgba(227, 242, 253, 0.65) !important;
+    border-color: #bbdefb !important;
+  }
+  .win7-table-row:hover {
+    background: #e3f2fd !important;
+  }
+  .win7-content-row:hover {
+    background: #f0f7ff !important;
+  }
+  .win7-startmenu-item:hover {
+    background: linear-gradient(180deg, #f0f7ff 0%, #d8ebfa 100%) !important;
+    border: 1px solid #b3d7f5;
+  }
+  .win7-context-item:hover {
+    background: #3399ff !important;
+    color: #ffffff !important;
+  }
+
+  /* Focus outline accessible styles */
+  button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 1px dotted #0288d1 !important;
+    outline-offset: 1px;
+  }
+
+  /* Rotating icon utility */
+  .spin-icon {
+    animation: aero-spin-cycle 1s linear infinite;
+  }
+  @keyframes aero-spin-cycle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -857,7 +1002,15 @@
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .aero-drift {
+  .aero-drift,
+  .aero-bubble-carrier,
+  .aero-bubble-wobble,
+  .aero-fish-lane,
+  .aero-fish-tail,
+  .aero-flora-carrier,
+  .aero-water-ripple,
+  .aero-aurora-ray,
+  .aero-glass-sheen-sweep {
     animation: none !important;
   }
 }
@@ -873,7 +1026,16 @@
   .win7-toolbar::-webkit-scrollbar { display: none; }
   .win7-menubar { flex-wrap: nowrap; }
   .win7-menubar > * { flex-shrink: 0; }
-  .win7-address-bar { flex: 0 0 auto; min-width: 300px; }
+  .win7-address-bar { flex: 0 0 auto; min-width: 240px; }
   .win7-header-banner { flex-wrap: wrap; gap: 10px; }
-  .win7-window { min-width: 0; }
+  .win7-window {
+    width: 100vw !important;
+    height: calc(100vh - 42px) !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    min-width: 0;
+  }
+  .win7-navpane {
+    display: none !important;
+  }
 }

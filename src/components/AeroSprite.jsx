@@ -8,7 +8,7 @@ import {
 
 /* ═══════════════════════════════════════════════════════
    FRUTIGER AERO SPRITE LIBRARY
-   Glossy 2007-era desktop icons — water drops, fish,
+   Glossy 2007-era desktop icons: water drops, fish,
    bubbles, aurora, chrome. Render with <AeroSprite id="drop" size={28} />
 ═══════════════════════════════════════════════════════ */
 
@@ -261,7 +261,6 @@ function SpriteDefs({ p }) {
         return (
           <Tag key={g.id} {...g.attrs} id={`${p}-${g.id}`}>
             {g.stops.map(([o, c]) => (
-              // eslint-disable-next-line react/no-array-index-key
               <stop key={`${o}-${c}`} offset={o} stopColor={c} />
             ))}
           </Tag>

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   VistaIcon — authentic Windows 7 / Vista system icons
+   VistaIcon: authentic Windows 7 / Vista system icons
    Extracted from Win7 shell32.dll / imageres.dll via
    Visnalize/resources (github.com/Visnalize/resources).
    Files live in /public/icons/win7/<id>.png (transparent).

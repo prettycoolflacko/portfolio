@@ -1,0 +1,92 @@
+export const experienceLogs = [
+  {
+    id: 1001,
+    level: 'Information',
+    date: '2026-02-15 16:45:00',
+    source: 'PLN_Indonesia_Power',
+    taskCategory: 'Enterprise IT Internship',
+    title: 'Information Technology & Digital Intern',
+    organization: 'PLN Indonesia Power Head Office',
+    period: 'Jan 2026 – Feb 2026',
+    logName: 'Application',
+    computer: 'PLN-HQ-SRV01',
+    user: 'Elyuzar',
+    bullets: [
+      'Engineered an automated Bun.js + Playwright scraper for the Sungrow iSolarCloud platform',
+      'Built REST APIs and integrated Redis caching for real-time data pipelines',
+    ],
+    generalDesc: `Completed an eight-week internship at the PLN Indonesia Power Head Office in Jakarta. The operations team needed continuous power production telemetry from the Sungrow iSolarCloud web portal without having to manually log into browser sessions throughout the day.
+
+I wrote a headless Playwright scraper script on Bun.js that ran on a scheduled cron. The script extracted active power output, daily yield, and inverter operating states, cached them in Redis with a 60-second time-to-live to prevent portal rate limits, and exposed the data over internal REST endpoints. This replaced manual clipboard tracking with an automated operational feed.`,
+    xmlDetails: {
+      EventID: 1001,
+      Version: 1,
+      Level: 4,
+      Task: 'Data Ingestion Pipeline',
+      Opcode: 'Info',
+      Keywords: 'Scraping, Redis, Bun, Playwright, Telemetry',
+      ExecutionProcessID: 4812,
+      ExecutionThreadID: 3108,
+    },
+  },
+  {
+    id: 1002,
+    level: 'Information',
+    date: '2025-08-25 18:30:12',
+    source: 'PKKMB_UPNVY_2025',
+    taskCategory: 'Campus Organization',
+    title: 'Documentation Division Staff',
+    organization: 'PKKMB UPN Veteran Yogyakarta',
+    period: 'Jul 2025 – Aug 2025',
+    logName: 'Setup',
+    computer: 'UPNVY-MEDIA-PC',
+    user: 'Elyuzar',
+    bullets: [
+      'Documented campus-wide events and Faculty of Industrial Engineering activities through photography and video',
+      'Managed multi-camera video ingest, live card offloads, and same-day editing deadlines',
+    ],
+    generalDesc: `Served on the documentation team for the university's annual new-student orientation event. We recorded daily activities across campus auditoriums and outdoor field rallies for the Faculty of Industrial Engineering.
+
+My responsibility covered filming designated sessions on mirrorless cameras, backing up raw SD card footage to dual external drives after each shift, and editing video recaps in Adobe Premiere Pro under strict four-hour turnaround windows for official social media accounts.`,
+    xmlDetails: {
+      EventID: 1002,
+      Version: 1,
+      Level: 4,
+      Task: 'Media Production & Archive',
+      Opcode: 'Info',
+      Keywords: 'Videography, Editing, Premiere Pro, File Transfer',
+      ExecutionProcessID: 2904,
+      ExecutionThreadID: 1420,
+    },
+  },
+  {
+    id: 1003,
+    level: 'Information',
+    date: '2024-10-10 13:15:40',
+    source: 'MMCI_Informatika',
+    taskCategory: 'Student Multimedia Community',
+    title: 'Videographer & Production Staff',
+    organization: 'Multimedia Community Informatika (MMCI)',
+    period: 'Oct 2024 – Present',
+    logName: 'System',
+    computer: 'MMCI-LAB-WORKSTATION',
+    user: 'Elyuzar',
+    bullets: [
+      'Produced and edited multimedia content for the Informatics department community',
+      'Operated video cameras, lighting setups, and handled audio recording for departmental workshops',
+    ],
+    generalDesc: `Active member of the Multimedia Community in the Informatics Department. I handle camera operation, multi-angle setup for department workshops, and post-production video editing for student initiatives and internal tech talks.
+
+Working in this team taught me how to manage digital asset pipelines systematically, organize large video project files, and collaborate across technical and creative requirements.`,
+    xmlDetails: {
+      EventID: 1003,
+      Version: 1,
+      Level: 4,
+      Task: 'Department Media Coverage',
+      Opcode: 'Info',
+      Keywords: 'Audio, Video, Post-Production, Lighting',
+      ExecutionProcessID: 1840,
+      ExecutionThreadID: 980,
+    },
+  },
+];
