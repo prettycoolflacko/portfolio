@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import VistaIcon from '../VistaIcon';
 import AeroSprite from '../AeroSprite';
-import profileImg from '../../assets/profile.webp';
+const profileImg = '/assets/elyuzar_profile.jpeg';
 
 const menuLinks = [
   { label: 'Getting Started (Home)', path: '/', icon: 'computer' },

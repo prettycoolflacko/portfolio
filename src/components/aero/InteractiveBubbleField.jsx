@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { playBubblePop } from '../../utils/audio';
 
 const INITIAL_BUBBLES = [
   { id: 'orb-0', x: 8, size: 36, speed: 17, delay: 0.2, wobble: 18 },
@@ -26,6 +27,7 @@ export default function InteractiveBubbleField() {
 
   const handlePop = (bub, e) => {
     e.stopPropagation();
+    playBubblePop(450 + (bub.size % 200));
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = rect.left + rect.width / 2;
     const clickY = rect.top + rect.height / 2;

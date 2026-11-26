@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import VistaIcon from '../components/VistaIcon';
-import profileImg from '../assets/profile.webp';
+const profileImg = '/assets/elyuzar_profile.jpeg';
 import { projects } from '../data/projects';
 
 export default function Home() {

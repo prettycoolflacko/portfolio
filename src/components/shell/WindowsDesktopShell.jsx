@@ -1,32 +1,32 @@
 import { useState, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import '../../styles/win7.css';
 
 // Shell & Aero imports
-import WindowFrame from './components/shell/WindowFrame';
-import Taskbar from './components/shell/Taskbar';
-import StartMenu from './components/shell/StartMenu';
-import CloseDialog from './components/shell/CloseDialog';
-import ContextMenu from './components/shell/ContextMenu';
-import AeroAtmosphere from './components/aero/AeroAtmosphere';
-import DesktopRipple from './components/aero/DesktopRipple';
-import InteractiveBubbleField from './components/aero/InteractiveBubbleField';
-import AeroGadgetSidebar from './components/aero/AeroGadgetSidebar';
-import VistaIcon from './components/VistaIcon';
+import WindowFrame from './WindowFrame';
+import Taskbar from './Taskbar';
+import StartMenu from './StartMenu';
+import CloseDialog from './CloseDialog';
+import ContextMenu from './ContextMenu';
+import AeroAtmosphere from '../aero/AeroAtmosphere';
+import DesktopRipple from '../aero/DesktopRipple';
+import InteractiveBubbleField from '../aero/InteractiveBubbleField';
+import AeroGadgetSidebar from '../aero/AeroGadgetSidebar';
+import VistaIcon from '../VistaIcon';
 
-// Lazy-loaded pages (Part 1 Architecture)
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Skills = lazy(() => import('./pages/Skills'));
-const Projects = lazy(() => import('./pages/Projects'));
-const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
-const Experience = lazy(() => import('./pages/Experience'));
-const Education = lazy(() => import('./pages/Education'));
-const Certifications = lazy(() => import('./pages/Certifications'));
-const Contact = lazy(() => import('./pages/Contact'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+// Lazy-loaded pages
+const Home = lazy(() => import('../../legacy-pages/Home'));
+const About = lazy(() => import('../../legacy-pages/About'));
+const Skills = lazy(() => import('../../legacy-pages/Skills'));
+const Projects = lazy(() => import('../../legacy-pages/Projects'));
+const ProjectDetail = lazy(() => import('../../legacy-pages/ProjectDetail'));
+const Experience = lazy(() => import('../../legacy-pages/Experience'));
+const Education = lazy(() => import('../../legacy-pages/Education'));
+const Certifications = lazy(() => import('../../legacy-pages/Certifications'));
+const Contact = lazy(() => import('../../legacy-pages/Contact'));
+const NotFound = lazy(() => import('../../legacy-pages/NotFound'));
 
-// Authentic Windows 7 route loading indicator
 function RouteSuspenseFallback() {
   return (
     <div
@@ -66,7 +66,7 @@ function RouteSuspenseFallback() {
   );
 }
 
-export default function App() {
+export default function WindowsDesktopShell() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -100,6 +100,36 @@ export default function App() {
         if (contextMenu) setContextMenu(null);
       }}
     >
+      {/* ── Switcher Bar at Top Right to Return to Aero Open World ── */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 14,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 100,
+        }}
+      >
+        <a
+          href="/"
+          className="aero-btn aero-btn-sky"
+          style={{
+            padding: '5px 16px',
+            borderRadius: 20,
+            fontSize: '11.5px',
+            fontWeight: 700,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            textDecoration: 'none',
+            boxShadow: '0 4px 16px rgba(0, 30, 70, 0.35)',
+          }}
+          title="Back to portfolio"
+        >
+          <span>Back to portfolio</span>
+        </a>
+      </div>
+
       {/* ── Desktop Ambient Frutiger Aero Atmosphere Layer ── */}
       <AeroAtmosphere isMaximized={isMaximized} />
 
@@ -127,12 +157,12 @@ export default function App() {
       >
         <div
           className="win7-desktop-icon"
-          onClick={() => handleDesktopIconClick('/')}
+          onClick={() => handleDesktopIconClick('/os')}
           tabIndex={0}
           role="button"
           aria-label="Computer Desktop Shortcut"
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') handleDesktopIconClick('/');
+            if (e.key === 'Enter' || e.key === ' ') handleDesktopIconClick('/os');
           }}
         >
           <VistaIcon id="computer" size={34} title="Computer" />
@@ -141,12 +171,12 @@ export default function App() {
 
         <div
           className="win7-desktop-icon"
-          onClick={() => handleDesktopIconClick('/about')}
+          onClick={() => handleDesktopIconClick('/os/about')}
           tabIndex={0}
           role="button"
           aria-label="Elyuzar User Profile Shortcut"
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') handleDesktopIconClick('/about');
+            if (e.key === 'Enter' || e.key === ' ') handleDesktopIconClick('/os/about');
           }}
         >
           <VistaIcon id="userfolder" size={34} title="Elyuzar" />
@@ -155,12 +185,12 @@ export default function App() {
 
         <div
           className="win7-desktop-icon"
-          onClick={() => handleDesktopIconClick('/projects')}
+          onClick={() => handleDesktopIconClick('/os/projects')}
           tabIndex={0}
           role="button"
           aria-label="Projects Folder Shortcut"
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') handleDesktopIconClick('/projects');
+            if (e.key === 'Enter' || e.key === ' ') handleDesktopIconClick('/os/projects');
           }}
         >
           <VistaIcon id="folder" size={34} title="Projects" />
@@ -211,7 +241,6 @@ export default function App() {
           onToggleMinimize={() => setIsMinimized(!isMinimized)}
           onRequestClose={() => setShowCloseDialog(true)}
         >
-          {/* Framer Motion page transition: 220ms fade & scale (0.98 to 1) */}
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -222,7 +251,7 @@ export default function App() {
               style={{ width: '100%', height: '100%' }}
             >
               <Suspense fallback={<RouteSuspenseFallback />}>
-                <Routes location={location}>
+                <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/skills" element={<Skills />} />
@@ -324,3 +353,4 @@ export default function App() {
     </div>
   );
 }
+

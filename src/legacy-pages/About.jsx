@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import VistaIcon from '../components/VistaIcon';
 import { systemInfo } from '../data/systemInfo';
-import profileImg from '../assets/profile.webp';
+const profileImg = '/assets/elyuzar_profile.jpeg';
 
 export default function About() {
   const [showSettingsNotice, setShowSettingsNotice] = useState(false);
